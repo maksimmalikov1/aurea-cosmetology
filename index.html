@@ -893,6 +893,69 @@ section{padding:100px 0;}
   padding:14px;
   font-size:12px;
 }
+
+/* ===== All services ===== */
+.services{background:var(--bg-primary);}
+.services .section-head{margin-bottom:48px;}
+.services-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px;}
+.services-nav a{
+  font-family:var(--font-ui);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:10px 18px;border:1px solid var(--border);border-radius:999px;color:var(--text-secondary);
+  background:#fff;transition:all 0.25s ease;
+}
+.services-nav a:hover{color:var(--accent);border-color:var(--accent);}
+.services-group{margin-bottom:72px;opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.services-group.visible{opacity:1;transform:translateY(0);}
+.services-group:last-child{margin-bottom:0;}
+.services-group-head{display:flex;align-items:baseline;gap:16px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.services-group-head h3{font-family:var(--font-head);font-size:28px;font-weight:500;color:var(--text-primary);}
+.services-group-head .svc-count{
+  font-family:var(--font-ui);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.svc-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
+  padding:26px 28px;display:flex;flex-direction:column;gap:14px;
+  transition:transform 0.3s ease,box-shadow 0.3s ease,border-color 0.3s ease;
+}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(184,150,122,0.12);border-color:#D9CFC4;}
+.svc-card h4{font-family:var(--font-head);font-size:21px;font-weight:500;color:var(--text-primary);line-height:1.25;}
+.svc-card p{font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.5;flex:1;}
+.svc-card .svc-foot{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding-top:14px;border-top:1px solid var(--border);
+}
+.svc-card .svc-price{font-family:var(--font-ui);font-size:14px;font-weight:500;color:var(--accent);letter-spacing:0.04em;}
+.svc-card .svc-dur{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);letter-spacing:0.06em;}
+
+/* ===== Form consent ===== */
+.form-consent{display:flex;align-items:flex-start;gap:10px;margin:4px 0 6px;text-align:left;}
+.form-consent input[type="checkbox"]{
+  margin-top:4px;width:16px;height:16px;flex-shrink:0;accent-color:var(--accent);cursor:pointer;
+}
+.form-consent label{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);line-height:1.5;cursor:pointer;}
+.form-consent a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+
+/* ===== Footer legal row ===== */
+.footer-legal{
+  margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;
+}
+.footer-legal-links{display:flex;flex-direction:column;gap:8px;}
+.footer-legal-links a{
+  font-family:var(--font-ui);font-size:13px;color:rgba(255,255,255,0.65);
+  transition:color 0.2s ease;
+}
+.footer-legal-links a:hover{color:var(--accent);}
+.footer-requisites{font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;}
+.footer-requisites strong{color:rgba(255,255,255,0.8);font-weight:500;}
+
+@media (max-width:860px){
+  .services-grid{grid-template-columns:1fr;}
+  .services-group-head{flex-direction:column;gap:4px;align-items:flex-start;}
+  .footer-legal{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -906,12 +969,12 @@ section{padding:100px 0;}
     <nav class="nav">
       <a href="#hero" class="logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 27 L16 5 L26 27"/><path d="M9.5 19 Q16 14.5 22.5 19"/></svg><span class="logo-name">Aurea</span></a>
       <div class="nav-links">
+        <a href="#services">Услуги</a>
         <a href="#process">Процедура</a>
-        <a href="#prices">Цены</a>
         <a href="#beforeafter">Работы</a>
+        <a href="#prices">Цены</a>
         <a href="#reviews">Отзывы</a>
         <a href="#faq">Вопросы</a>
-        <a href="#docs">Документы</a>
         <a href="#map">Контакты</a>
       </div>
       <div class="nav-right">
@@ -942,12 +1005,12 @@ section{padding:100px 0;}
   </div>
 
   <nav class="mobile-nav">
+    <a href="#services">Услуги</a>
     <a href="#process">Процедура</a>
-    <a href="#prices">Цены</a>
     <a href="#beforeafter">Работы</a>
+    <a href="#prices">Цены</a>
     <a href="#reviews">Отзывы</a>
     <a href="#faq">Вопросы</a>
-    <a href="#docs">Документы</a>
     <a href="#map">Контакты</a>
   </nav>
 
@@ -1392,6 +1455,215 @@ section{padding:100px 0;}
   </div>
 </section>
 
+<!-- ===== 6.5. ALL SERVICES ===== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="label">Все услуги клиники</span>
+      <h2 class="italic">Что мы делаем</h2>
+      <p>Эстетическая косметология, аппаратные процедуры, уход и работа с телом. Главное направление клиники — контурная пластика, но мы ведём клиента целиком.</p>
+    </div>
+
+    <div class="services-nav reveal">
+      <a href="#svc-injection">Инъекционная</a>
+      <a href="#svc-apparatus">Аппаратная</a>
+      <a href="#svc-care">Уход за кожей</a>
+      <a href="#svc-body">Эстетика тела</a>
+      <a href="#svc-tricho">Трихология</a>
+    </div>
+
+    <!-- Инъекционная косметология -->
+    <div class="services-group reveal" id="svc-injection">
+      <div class="services-group-head">
+        <h3>Инъекционная косметология</h3>
+        <span class="svc-count">9 процедур</span>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <h4>Контурная пластика губ</h4>
+          <p>Коррекция формы, объёма и симметрии филлером на основе гиалуроновой кислоты.</p>
+          <div class="svc-foot"><span class="svc-price">от 18 000 ₽</span><span class="svc-dur">40–60 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Контурная пластика лица</h4>
+          <p>Моделирование скул, подбородка, коррекция овала и носогубных складок филлером.</p>
+          <div class="svc-foot"><span class="svc-price">от 22 000 ₽</span><span class="svc-dur">60–90 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Ботулинотерапия</h4>
+          <p>Коррекция мимических морщин: лоб, межбровье, «гусиные лапки». Botox, Dysport, Xeomin.</p>
+          <div class="svc-foot"><span class="svc-price">от 350 ₽/ед.</span><span class="svc-dur">20–30 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Биоревитализация</h4>
+          <p>Глубокое увлажнение и восстановление качества кожи инъекциями чистой гиалуроновой кислоты.</p>
+          <div class="svc-foot"><span class="svc-price">от 11 000 ₽</span><span class="svc-dur">30–45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Биоармирование</h4>
+          <p>Укрепление каркаса кожи сетью инъекций — лифтинг-эффект без операции.</p>
+          <div class="svc-foot"><span class="svc-price">от 24 000 ₽</span><span class="svc-dur">60 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Мезотерапия</h4>
+          <p>Коктейли из витаминов и микроэлементов против тусклости, акне и ранних возрастных изменений.</p>
+          <div class="svc-foot"><span class="svc-price">от 6 500 ₽</span><span class="svc-dur">30–40 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Плазмотерапия (PRP)</h4>
+          <p>Инъекции собственной плазмы для регенерации, тонуса и улучшения цвета лица.</p>
+          <div class="svc-foot"><span class="svc-price">от 9 500 ₽</span><span class="svc-dur">45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Липолитики</h4>
+          <p>Коррекция «второго подбородка» и локальных жировых отложений инъекционным способом.</p>
+          <div class="svc-foot"><span class="svc-price">от 8 000 ₽</span><span class="svc-dur">30 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Нитевой лифтинг</h4>
+          <p>Подтяжка контуров рассасывающимися мезонитями — альтернатива хирургии.</p>
+          <div class="svc-foot"><span class="svc-price">от 28 000 ₽</span><span class="svc-dur">60–90 мин</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Аппаратная косметология -->
+    <div class="services-group reveal" id="svc-apparatus">
+      <div class="services-group-head">
+        <h3>Аппаратная косметология</h3>
+        <span class="svc-count">6 процедур</span>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <h4>SMAS-лифтинг</h4>
+          <p>Ультразвуковая подтяжка глубоких слоёв (Ulthera / Doublo) — эффект сохраняется до 1,5 лет.</p>
+          <div class="svc-foot"><span class="svc-price">от 45 000 ₽</span><span class="svc-dur">60–90 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>RF-лифтинг (термаж)</h4>
+          <p>Радиочастотный прогрев — коррекция овала, подтяжка кожи, борьба с возрастным птозом.</p>
+          <div class="svc-foot"><span class="svc-price">от 18 000 ₽</span><span class="svc-dur">45–60 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Фотоомоложение IPL (M22)</h4>
+          <p>Работа с пигментацией, сосудистыми звёздочками, тусклостью и постакне.</p>
+          <div class="svc-foot"><span class="svc-price">от 7 500 ₽</span><span class="svc-dur">30–45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Лазерная эпиляция</h4>
+          <p>Александритовый и диодный лазер. Любые зоны — от верхней губы до полностью тела.</p>
+          <div class="svc-foot"><span class="svc-price">от 1 200 ₽</span><span class="svc-dur">15–60 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Лазерное удаление сосудов</h4>
+          <p>Купероз, сосудистые сеточки, винные пятна — Nd:YAG лазер.</p>
+          <div class="svc-foot"><span class="svc-price">от 4 500 ₽</span><span class="svc-dur">20–40 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Фракционный лазер</h4>
+          <p>Шлифовка кожи, работа с рубцами, растяжками и глубокими морщинами.</p>
+          <div class="svc-foot"><span class="svc-price">от 14 000 ₽</span><span class="svc-dur">45–60 мин</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Уход за кожей -->
+    <div class="services-group reveal" id="svc-care">
+      <div class="services-group-head">
+        <h3>Уход за кожей</h3>
+        <span class="svc-count">5 процедур</span>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <h4>Пилинги</h4>
+          <p>Поверхностные, срединные и глубокие — обновление кожи, работа с тоном и текстурой.</p>
+          <div class="svc-foot"><span class="svc-price">от 4 000 ₽</span><span class="svc-dur">45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Чистка лица</h4>
+          <p>Механическая, ультразвуковая, комбинированная. Глубокое очищение пор.</p>
+          <div class="svc-foot"><span class="svc-price">от 5 500 ₽</span><span class="svc-dur">60 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Карбокситерапия</h4>
+          <p>Неинвазивная СО₂-терапия — лифтинг, тонус, работа с отёками и тёмными кругами.</p>
+          <div class="svc-foot"><span class="svc-price">от 4 500 ₽</span><span class="svc-dur">45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Уходы (anti-age, anti-acne)</h4>
+          <p>Программы по типу кожи и запросу: увлажнение, успокоение, борьба с акне, anti-age.</p>
+          <div class="svc-foot"><span class="svc-price">от 6 500 ₽</span><span class="svc-dur">60–90 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Микронидлинг</h4>
+          <p>Фракционная мезотерапия — стимуляция синтеза коллагена, работа с рубцами и порами.</p>
+          <div class="svc-foot"><span class="svc-price">от 8 500 ₽</span><span class="svc-dur">45 мин</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Эстетика тела -->
+    <div class="services-group reveal" id="svc-body">
+      <div class="services-group-head">
+        <h3>Эстетика тела</h3>
+        <span class="svc-count">4 процедуры</span>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <h4>Прессотерапия</h4>
+          <p>Лимфодренаж, работа с отёками, усиление оттока после операций и перелётов.</p>
+          <div class="svc-foot"><span class="svc-price">от 2 500 ₽</span><span class="svc-dur">45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>LPG-массаж</h4>
+          <p>Эндермологический массаж — коррекция фигуры, антицеллюлитные программы.</p>
+          <div class="svc-foot"><span class="svc-price">от 3 500 ₽</span><span class="svc-dur">45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Криолиполиз</h4>
+          <p>Контролируемое охлаждение — коррекция локальных жировых отложений без операции.</p>
+          <div class="svc-foot"><span class="svc-price">от 12 000 ₽</span><span class="svc-dur">60 мин/зона</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Обёртывания</h4>
+          <p>Водорослевые, грязевые, разогревающие — тонус кожи и подготовка к пляжному сезону.</p>
+          <div class="svc-foot"><span class="svc-price">от 3 800 ₽</span><span class="svc-dur">60 мин</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Трихология -->
+    <div class="services-group reveal" id="svc-tricho">
+      <div class="services-group-head">
+        <h3>Трихология</h3>
+        <span class="svc-count">3 процедуры</span>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <h4>Мезотерапия скальпа</h4>
+          <p>Инъекционные коктейли против выпадения и ломкости волос.</p>
+          <div class="svc-foot"><span class="svc-price">от 5 500 ₽</span><span class="svc-dur">30 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>PRP-терапия волос</h4>
+          <p>Собственная плазма — стимуляция волосяных фолликулов, рост новых волос.</p>
+          <div class="svc-foot"><span class="svc-price">от 9 500 ₽</span><span class="svc-dur">45 мин</span></div>
+        </div>
+        <div class="svc-card">
+          <h4>Консультация трихолога</h4>
+          <p>Диагностика кожи головы, фототрихоскопия, составление плана лечения.</p>
+          <div class="svc-foot"><span class="svc-price">2 500 ₽</span><span class="svc-dur">30–45 мин</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-cta reveal" style="margin-top:48px;">
+      <a href="#final" class="btn btn-primary">Записаться на консультацию</a>
+      <p class="price-disclaimer">Цены указаны ориентировочно. Имеются противопоказания — необходима консультация специалиста.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 7. PRICES ===== -->
 <section class="prices" id="prices">
   <div class="container">
@@ -1710,9 +1982,13 @@ section{padding:100px 0;}
           <option value="evening">Вечер 17–21</option>
         </select>
         <input type="text" name="source" placeholder="Откуда вы о нас узнали? (необязательно)">
+        <div class="form-consent">
+          <input type="checkbox" id="pdn-consent" name="pdn-consent" required>
+          <label for="pdn-consent">Я подтверждаю, что ознакомлен(а) с <a href="legal/privacy.html" target="_blank" rel="noopener">Политикой обработки персональных данных</a> и даю <a href="legal/consent.html" target="_blank" rel="noopener">согласие на обработку</a> указанных данных для записи на консультацию.</label>
+        </div>
         <button type="submit" class="btn btn-primary btn-full">Записаться на консультацию</button>
         <p class="form-note">Перезвоним в течение 15 минут в рабочее время</p>
-        <p class="form-disclaimer">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных</p>
+        <p class="form-disclaimer">Отправляя заявку, вы акцептуете <a href="legal/offer.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">публичную оферту</a>. Имеются противопоказания — необходима консультация врача.</p>
       </form>
       <div class="form-success" id="formSuccess">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1762,10 +2038,11 @@ section{padding:100px 0;}
         <p class="footer-desc">Эстетическая косметология. Контурная пластика, биоревитализация и уход за кожей в концепции естественной красоты.</p>
       </div>
       <div class="footer-col">
-        <h4>Навигация</h4>
+        <h4>Клиника</h4>
+        <a href="#services">Все услуги</a>
         <a href="#process">Процедура</a>
-        <a href="#prices">Цены</a>
         <a href="#beforeafter">Работы</a>
+        <a href="#prices">Цены</a>
         <a href="#reviews">Отзывы</a>
         <a href="#faq">Вопросы</a>
       </div>
@@ -1777,8 +2054,31 @@ section{padding:100px 0;}
         <p>Пн–Сб 9:00–21:00, Вс 10:00–19:00</p>
       </div>
     </div>
-    <p class="footer-disclaimer">Имеются противопоказания. Необходима консультация специалиста.</p>
-    <p class="footer-copy">© 2026 Aurea. Все права защищены.</p>
+
+    <div class="footer-legal">
+      <div class="footer-legal-links">
+        <strong style="color:rgba(255,255,255,0.85);font-weight:500;font-size:14px;margin-bottom:6px;display:block;">Правовая информация</strong>
+        <a href="legal/privacy.html">Политика обработки персональных данных</a>
+        <a href="legal/consent.html">Согласие на обработку персональных данных</a>
+        <a href="legal/offer.html">Публичная оферта</a>
+        <a href="legal/terms.html">Пользовательское соглашение</a>
+        <a href="legal/rules.html">Правила оказания платных медицинских услуг</a>
+        <a href="legal/rights.html">Права пациента</a>
+        <a href="legal/license.html">Лицензия на медицинскую деятельность</a>
+      </div>
+      <div class="footer-requisites">
+        <strong>ООО «Ауреа Клиник»</strong><br>
+        ИНН 7707123456 · КПП 770701001<br>
+        ОГРН 1157746123456<br>
+        125009, г. Москва, ул. Тверская, д. 18, стр. 2<br><br>
+        <strong>Лицензия на медицинскую деятельность</strong><br>
+        <a href="legal/license.html" style="color:rgba(255,255,255,0.75);text-decoration:underline;">№ ЛО-77-01-021456 от 15.03.2023</a><br>
+        Выдана Департаментом здравоохранения г. Москвы
+      </div>
+    </div>
+
+    <p class="footer-disclaimer">Имеются противопоказания. Необходима консультация специалиста. Информация на сайте не является медицинской консультацией и носит справочный характер.</p>
+    <p class="footer-copy">© 2026 ООО «Ауреа Клиник». Все права защищены.</p>
   </div>
 </footer>
 
