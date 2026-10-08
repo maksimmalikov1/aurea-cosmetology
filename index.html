@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контурная пластика губ — естественный результат | Aurea</title>
+<meta name="description" content="Контурная пластика губ без операции в клинике Aurea, Москва. Коррекция формы, объёма и симметрии. Результат виден сразу, анестезия включена. Бесплатная консультация.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== MOBILE OVERFLOW HARD FIX ===== */
+html{
+  overflow-x:hidden;
+  max-width:100%;
+}
+body{
+  overflow-x:hidden;
+  max-width:100%;
+  width:100%;
+}
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  max-width:100%;
+}
+img,svg,video,iframe{
+  max-width:100%;
+}
+section,header,footer,nav,div{
+  max-width:100%;
+}
+/* ===== END HARD FIX ===== */
+:root{
+  --bg-primary:#FAFAF8;
+  --bg-secondary:#F2EDE8;
+  --bg-card:#FFFFFF;
+  --accent:#B8967A;
+  --accent-hover:#9E7D63;
+  --accent-muted:#8C7B6B;
+  --text-primary:#1C1C1C;
+  --text-secondary:#5C5047;
+  --text-muted:#7A6B5E;
+  --border:#E8E0D8;
+  --shadow:rgba(184,150,122,0.12);
+  --font-head:'Playfair Display',serif;
+  --font-body:'Cormorant Garamond',serif;
+  --font-ui:'Jost',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  font-size:18px;
+  line-height:1.6;
+  overflow-x:hidden;
+  max-width:100vw;
+}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:600;line-height:1.2;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+section{padding:100px 0;}
+.container{max-width:1200px;margin:0 auto;padding:0 32px;}
+
+/* ===== Keyframes ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slowRotate{from{transform:translateY(-50%) rotate(0deg);}to{transform:translateY(-50%) rotate(360deg);}}
+@keyframes float{0%,100%{transform:translateY(0px);}50%{transform:translateY(-14px);}}
+@keyframes drawLine{from{width:0;}to{width:80%;}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,150,122,0.4);}50%{box-shadow:0 0 0 14px rgba(184,150,122,0);}}
+
+/* ===== Scroll progress ===== */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:2000;transition:width 0.1s linear;}
+
+/* ===== Inline SVG icons ===== */
+.svg-ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;display:inline-block;vertical-align:middle;}
+
+/* ===== Logo + nav link underline ===== */
+.logo{display:inline-flex;align-items:center;gap:10px;}
+.logo-mark{width:32px;height:32px;color:var(--accent);flex-shrink:0;}
+.logo-name{font-family:var(--font-head);font-size:20px;font-weight:400;letter-spacing:0.05em;color:var(--text-primary);}
+.nav-links a{position:relative;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--accent);transition:width 0.3s ease;}
+.nav-links a:hover::after{width:100%;}
+
+/* ===== Map section (light) ===== */
+.map-section{background:var(--bg-secondary);padding:100px 0;}
+.map-section .label{display:block;text-align:center;color:var(--accent);}
+.map-section h2{text-align:center;color:var(--text-primary);font-size:52px;margin:16px 0 8px;}
+.map-section .map-sub{text-align:center;font-family:var(--font-ui);font-size:16px;color:var(--text-secondary);margin-bottom:40px;}
+.map-frame{border-radius:16px;overflow:hidden;border:1px solid var(--border);line-height:0;opacity:0;transform:scale(0.98);transition:opacity 0.8s ease,transform 0.8s ease;}
+.map-frame.visible{opacity:1;transform:scale(1);}
+.map-frame iframe{display:block;width:100%;height:480px;border:0;}
+.map-info{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:40px;}
+.map-info-item{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;padding:4px 32px;}
+.map-info-item:first-child{padding-left:0;}
+.map-info-item:last-child{padding-right:0;}
+.map-info-item:not(:last-child){border-right:1px solid var(--border);}
+.map-info-item.visible{opacity:1;transform:translateY(0);}
+.map-info-item .map-info-label{font-family:var(--font-ui);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);margin-bottom:8px;}
+.map-info-item .map-info-value{font-family:var(--font-ui);font-size:16px;font-weight:500;color:var(--text-primary);}
+.map-link{font-family:var(--font-ui);font-size:15px;color:var(--accent);text-align:center;display:block;margin-top:32px;transition:opacity 0.3s;}
+.map-link:hover{opacity:0.7;}
+
+/* Labels */
+.label{
+  font-family:var(--font-ui);
+  text-transform:uppercase;
+  letter-spacing:0.2em;
+  font-size:13px;
+  font-weight:500;
+  color:var(--accent);
+}
+.section-head{text-align:center;max-width:720px;margin:0 auto 60px;}
+.section-head h2{font-size:42px;margin-bottom:18px;}
+.section-head .italic{font-style:italic;}
+.section-head p{font-size:20px;color:var(--text-secondary);}
+
+/* Buttons (premium) */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--font-ui);
+  cursor:pointer;
+}
+.btn-primary{
+  padding:16px 36px;
+  background:var(--accent);
+  color:#FAFAF8;
+  font-size:14px;font-weight:500;
+  letter-spacing:0.08em;text-transform:uppercase;
+  border:none;border-radius:2px;
+  position:relative;overflow:hidden;
+  transition:background 0.3s ease,transform 0.2s ease,box-shadow 0.3s ease;
+}
+.btn-primary:hover{
+  background:var(--accent-hover);
+  transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(184,150,122,0.35);
+}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary::after{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);
+  transition:left 0.5s ease;
+}
+.btn-primary:hover::after{left:150%;}
+.btn-outline{
+  padding:15px 35px;
+  background:transparent;
+  color:var(--accent);
+  font-size:14px;font-weight:500;
+  letter-spacing:0.08em;text-transform:uppercase;
+  border:1px solid var(--accent);border-radius:2px;
+  transition:background 0.3s ease,color 0.3s ease,transform 0.2s ease;
+}
+.btn-outline:hover{
+  background:var(--accent);
+  color:#FAFAF8;
+  transform:translateY(-2px);
+}
+.btn-full{width:100%;}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ===== HEADER ===== */
+.header{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  background:transparent;
+  transition:background 0.4s ease,box-shadow 0.4s ease;
+  padding:22px 0;
+}
+.header.scrolled{background:rgba(250,250,248,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 2px 24px var(--shadow);padding:16px 0;}
+.nav{display:flex;align-items:center;justify-content:space-between;}
+.header .logo-name{font-size:22px;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);transition:color 0.3s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-phone{font-family:var(--font-ui);font-size:15px;font-weight:500;color:var(--text-primary);transition:color 0.3s;}
+.nav-phone:hover{color:var(--accent);}
+.btn-sm{padding:11px 22px;font-size:14px;}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
+.burger span{width:26px;height:2px;background:var(--text-primary);transition:0.3s;}
+/* ===== MOBILE MENU REDESIGN ===== */
+.mobile-menu {
+  position: fixed;
+  top: 0; right: 0;
+  width: 88%;
+  max-width: 360px;
+  height: 100vh;
+  background: var(--bg-primary);
+  z-index: 1800;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Шапка меню */
+.mobile-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 28px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mobile-menu-logo .logo-mark {
+  width: 28px; height: 28px;
+  color: var(--accent);
+}
+.mobile-menu-logo .logo-name {
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--text-primary);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+.mobile-close {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  transition: border-color 0.3s, color 0.3s;
+}
+.mobile-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.mobile-close svg {
+  width: 16px; height: 16px;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.5; stroke-linecap: round;
+}
+
+/* Навигационные ссылки */
+.mobile-nav {
+  flex: 1;
+  padding: 12px 0;
+}
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  transition: color 0.3s, padding-left 0.3s;
+  position: relative;
+}
+.mobile-nav a::after {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.mobile-nav a:hover {
+  color: var(--accent);
+  padding-left: 34px;
+}
+.mobile-nav a:hover::after {
+  opacity: 1;
+}
+.mobile-nav a:first-child {
+  border-top: 1px solid var(--border);
+}
+
+/* Нижний блок */
+.mobile-menu-foot {
+  padding: 28px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+.mobile-menu-tagline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.mobile-menu-phone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+  transition: color 0.3s;
+}
+.mobile-menu-phone svg {
+  width: 18px; height: 18px;
+  stroke: var(--accent); fill: none;
+  stroke-width: 1.5; stroke-linecap: round;
+  flex-shrink: 0;
+}
+.mobile-menu-phone:hover {
+  color: var(--accent);
+}
+.mobile-menu-cta {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--accent);
+  color: #FAFAF8;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  text-decoration: none;
+}
+.mobile-menu-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 28, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  background:linear-gradient(135deg,var(--bg-primary) 0%,var(--bg-secondary) 100%);
+  position:relative;overflow:hidden;padding:140px 0 80px;
+}
+.hero-bg{position:absolute;top:50%;right:-8%;transform:translateY(-50%);width:780px;height:780px;opacity:0.6;pointer-events:none;z-index:0;animation:slowRotate 80s linear infinite;}
+.hero .container{position:relative;z-index:1;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-text .label{display:inline-block;margin-bottom:24px;animation:fadeUp 0.7s ease 0.1s both;}
+.hero-text h1{font-size:52px;margin-bottom:24px;animation:fadeUp 0.7s ease 0.25s both;}
+.hero-text h1 .em{font-style:italic;color:var(--accent-muted);}
+.hero-sub{font-size:20px;color:var(--text-secondary);margin-bottom:36px;max-width:520px;animation:fadeUp 0.7s ease 0.4s both;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:42px;animation:fadeUp 0.7s ease 0.55s both;}
+.hero-cta .btn-primary{animation:fadeUp 0.7s ease 0.55s both, pulse 3s ease-in-out 1.4s infinite;}
+.hero-facts{display:flex;gap:32px;flex-wrap:wrap;animation:fadeUp 0.7s ease 0.7s both;}
+.hero-fact{display:flex;align-items:center;gap:10px;font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);}
+.hero-fact .ico{font-size:20px;}
+.hero-photo{
+  position:relative;
+  border-radius:24px;overflow:hidden;
+  aspect-ratio:4/5;
+  box-shadow:0 30px 80px var(--shadow);
+  animation:fadeUp 0.9s ease 0.3s both, float 6s ease-in-out 1.4s infinite;
+}
+.hero-img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:44% center;
+  display:block;border-radius:24px;
+  transition:transform 0.8s ease;
+}
+.hero-photo:hover .hero-img{transform:scale(1.03);}
+
+/* ===== PAIN/SOLUTION ===== */
+.pain{background:var(--bg-primary);}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:20px;}
+.pain-col h3{font-size:24px;margin-bottom:28px;font-style:italic;}
+.pain-list li{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border);font-size:18px;}
+.pain-list li:last-child{border-bottom:none;}
+.mark{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-family:var(--font-ui);margin-top:2px;}
+.mark-x{background:#F2EDE8;color:var(--text-muted);}
+.mark-v{background:var(--accent);color:#fff;}
+.mark svg{width:14px;height:14px;}
+.pain-col.solution li{color:var(--text-primary);}
+.pain-col .pain-list li{opacity:0;transition:opacity 0.6s ease,transform 0.6s ease;}
+.pain-col:not(.solution) .pain-list li{transform:translateX(-20px);}
+.pain-col.solution .pain-list li{transform:translateX(20px);}
+.pain-col.visible .pain-list li{opacity:1;transform:translateX(0);}
+.pain-col.visible .pain-list li:nth-child(1){transition-delay:0.0s;}
+.pain-col.visible .pain-list li:nth-child(2){transition-delay:0.1s;}
+.pain-col.visible .pain-list li:nth-child(3){transition-delay:0.2s;}
+.pain-col.visible .pain-list li:nth-child(4){transition-delay:0.3s;}
+
+/* ===== PROCESS ===== */
+.process{background:var(--bg-secondary);}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;position:relative;margin-bottom:50px;}
+.steps::before{content:"";position:absolute;top:34px;left:10%;width:0;height:1px;background:var(--border);z-index:0;}
+.process.in-view .steps::before{animation:drawLine 1.2s ease 0.3s forwards;}
+.step{position:relative;z-index:1;text-align:center;}
+.step.reveal:nth-child(1){transition-delay:0s;}
+.step.reveal:nth-child(2){transition-delay:0.12s;}
+.step.reveal:nth-child(3){transition-delay:0.24s;}
+.step.reveal:nth-child(4){transition-delay:0.36s;}
+.step.reveal:nth-child(5){transition-delay:0.48s;}
+.step-num{font-family:var(--font-head);font-size:48px;color:var(--accent);line-height:1;margin-bottom:18px;background:var(--bg-secondary);display:inline-block;padding:0 10px;}
+.step h4{font-size:19px;margin-bottom:10px;}
+.step p{font-size:16px;color:var(--text-secondary);line-height:1.5;}
+.process-facts-line{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:48px;font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);}
+.process-facts-line span{display:inline-flex;align-items:center;gap:8px;}
+.process-facts-line .svg-ic{color:var(--accent);}
+.pf-dot{color:var(--accent);font-size:20px;line-height:1;}
+
+/* ===== PREPARATIONS (accordion, text only) ===== */
+.preps{background:var(--bg-primary);}
+.preps .section-head p{font-family:var(--font-body);font-style:italic;}
+.prep-list{max-width:860px;margin:0 auto;}
+.prep-acc{border-bottom:1px solid var(--border);}
+.prep-acc-head{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:24px;padding:28px 8px;text-align:left;transition:background 0.3s ease;}
+.prep-acc-head:hover{background:rgba(184,150,122,0.04);}
+.prep-acc-num{font-family:var(--font-head);font-size:48px;line-height:1;color:var(--accent);opacity:0.15;flex-shrink:0;transition:opacity 0.3s ease;}
+.prep-acc-head:hover .prep-acc-num,.prep-acc.open .prep-acc-num{opacity:0.4;}
+.prep-acc-title{flex:1;display:flex;flex-direction:column;gap:5px;}
+.prep-acc-title .prep-name{font-family:var(--font-head);font-size:24px;color:var(--text-primary);margin:0;line-height:1.1;}
+.prep-acc-title .prep-country{font-family:var(--font-ui);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);margin:0;}
+.prep-acc-icon{flex-shrink:0;color:var(--accent);display:inline-flex;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+.prep-acc.open .prep-acc-icon{transform:rotate(45deg);}
+.prep-acc-icon svg{width:24px;height:24px;}
+.prep-acc-body{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.5s cubic-bezier(0.4,0,0.2,1),opacity 0.4s ease;}
+.prep-acc.open .prep-acc-body{opacity:1;}
+.prep-acc-inner{position:relative;padding:8px 8px 36px 60px;overflow:hidden;}
+.prep-acc-deco{position:absolute;right:10px;top:-40px;font-family:var(--font-head);font-size:200px;line-height:1;color:var(--accent);opacity:0.04;pointer-events:none;user-select:none;z-index:0;}
+.prep-desc{position:relative;z-index:1;font-family:var(--font-body);font-size:18px;color:var(--text-secondary);margin-bottom:24px;line-height:1.6;}
+.prep-benefits{position:relative;z-index:1;list-style:none;margin-bottom:28px;}
+.prep-benefits li{display:flex;gap:12px;align-items:flex-start;padding:14px 0;font-family:var(--font-ui);font-size:15px;color:var(--text-secondary);border-top:1px solid var(--border);}
+.prep-benefits .check{color:var(--accent);flex-shrink:0;display:inline-flex;margin-top:1px;}
+.prep-benefits .check svg{width:18px;height:18px;}
+.prep-meta-row{position:relative;z-index:1;display:flex;gap:10px;flex-wrap:wrap;}
+.prep-meta-item{font-family:var(--font-ui);font-size:12px;color:var(--text-secondary);background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:8px 16px;}
+.prep-meta-item b{color:var(--accent-muted);font-weight:500;}
+
+/* ===== BEFORE/AFTER ===== */
+.beforeafter{background:var(--bg-secondary);}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.ba-slider{
+  position:relative;width:100%;aspect-ratio:4/5;border-radius:14px;overflow:hidden;
+  user-select:none;cursor:ew-resize;border:1px solid var(--border);
+  box-shadow:0 14px 40px var(--shadow);
+}
+.ba-layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:var(--font-ui);font-size:13px;line-height:1.6;}
+.ba-after{background:linear-gradient(160deg,#EDE4DB,#F4EEE8);color:var(--accent-muted);}
+.ba-before{background:linear-gradient(160deg,#E4E0DA,#EFEBE5);color:var(--text-muted);clip-path:inset(0 50% 0 0);z-index:2;}
+.beforeafter .ba-layer{padding:0;}
+.ba-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.ba-tag{position:absolute;top:14px;font-family:var(--font-ui);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;background:rgba(255,255,255,0.85);padding:5px 12px;border-radius:20px;z-index:4;}
+.ba-tag-before{left:14px;}
+.ba-tag-after{right:14px;}
+.ba-divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--accent);z-index:5;transform:translateX(-50%);}
+.ba-handle{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:42px;height:42px;border-radius:50%;background:#fff;border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:16px;z-index:6;
+  box-shadow:0 4px 16px var(--shadow);
+}
+/* Плавное движение при клике и прилипании к краям.
+   Во время перетаскивания отключается (.dragging), чтобы не отставать от курсора. */
+.ba-before,.ba-divider,.ba-handle{transition:clip-path 0.4s cubic-bezier(0.33,1,0.68,1),left 0.4s cubic-bezier(0.33,1,0.68,1);}
+.ba-slider.dragging .ba-before,
+.ba-slider.dragging .ba-divider,
+.ba-slider.dragging .ba-handle{transition:none;}
+.ba-caption{margin-top:16px;font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);line-height:1.7;}
+.ba-caption b{color:var(--text-secondary);font-weight:500;}
+
+/* ===== QUOTE / DOCTOR (two columns + placeholder) ===== */
+.quote{background:var(--bg-secondary);overflow:hidden;}
+.quote-box{max-width:1100px;margin:0 auto;position:relative;display:grid;grid-template-columns:55% 45%;gap:54px;align-items:center;opacity:0;transform:scale(0.97);transition:opacity 0.8s ease,transform 0.8s ease;}
+.quote-box.visible{opacity:1;transform:scale(1);}
+.quote-deco{position:absolute;left:42%;top:-40px;font-family:var(--font-head);font-size:200px;line-height:1;color:var(--accent);opacity:0.06;pointer-events:none;z-index:0;user-select:none;}
+.quote-content{position:relative;z-index:1;}
+.quote-label{display:block;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:0.2em;font-size:13px;font-weight:500;color:var(--accent);margin-bottom:20px;}
+.quote-text{font-family:var(--font-head);font-style:italic;font-size:28px;line-height:1.4;color:var(--text-primary);margin-bottom:28px;}
+.quote-author{margin-bottom:28px;}
+.quote-author .name{font-family:var(--font-ui);font-size:17px;font-weight:500;color:var(--text-primary);}
+.quote-author .spec{font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);margin-top:3px;}
+.quote-author .exp{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);margin-top:3px;}
+.quote-facts{list-style:none;border-top:1px solid var(--border);padding-top:22px;}
+.quote-facts li{display:flex;align-items:center;gap:12px;font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);padding:8px 0;opacity:0;transform:translateY(10px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.quote-box.visible .quote-facts li{opacity:1;transform:translateY(0);}
+.quote-box.visible .quote-facts li:nth-child(1){transition-delay:0.2s;}
+.quote-box.visible .quote-facts li:nth-child(2){transition-delay:0.32s;}
+.quote-box.visible .quote-facts li:nth-child(3){transition-delay:0.44s;}
+.quote-facts .svg-ic{color:var(--accent);}
+.doctor-photo-wrap{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 80px var(--shadow);z-index:1;}
+.doctor-photo-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.6s ease;}
+.doctor-photo-wrap:hover .doctor-photo-img{transform:scale(1.03);}
+
+/* ===== PRICES ===== */
+.prices{background:var(--bg-secondary);}
+.price-banner{display:flex;align-items:center;gap:10px;max-width:780px;margin:0 auto 22px;background:rgba(184,150,122,0.06);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:14px 20px;font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);}
+.price-banner .svg-ic{color:var(--accent);}
+.price-table{max-width:780px;margin:0 auto 40px;background:#fff;border-radius:16px;padding:14px 36px;border:1px solid var(--border);}
+.price-row{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;border-bottom:1px solid var(--border);opacity:0;transform:translateX(20px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.price-row:last-child{border-bottom:none;}
+.price-table.visible .price-row{opacity:1;transform:translateX(0);}
+.price-table.visible .price-row:nth-child(1){transition-delay:0.0s;}
+.price-table.visible .price-row:nth-child(2){transition-delay:0.08s;}
+.price-table.visible .price-row:nth-child(3){transition-delay:0.16s;}
+.price-table.visible .price-row:nth-child(4){transition-delay:0.24s;}
+.price-table.visible .price-row:nth-child(5){transition-delay:0.32s;}
+.price-name{font-size:19px;color:var(--text-primary);}
+.price-val{font-family:var(--font-ui);font-size:16px;font-weight:500;color:var(--accent-muted);white-space:nowrap;}
+.price-free{color:var(--accent);}
+.price-cta{text-align:center;}
+.price-disclaimer{text-align:center;font-family:var(--font-ui);font-size:13px;color:var(--text-muted);margin-top:20px;}
+
+/* ===== REHAB ===== */
+.rehab{background:var(--bg-primary);}
+.rehab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:40px;}
+.rehab-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:34px;}
+.rehab-ico{color:var(--accent);margin-bottom:16px;}
+.rehab-ico svg{width:28px;height:28px;}
+.rehab-card h4{font-size:21px;margin-bottom:16px;color:var(--accent-muted);}
+.rehab-card ul li{position:relative;padding-left:22px;margin-bottom:12px;font-size:17px;color:var(--text-secondary);line-height:1.5;}
+.rehab-card ul li::before{content:"·";position:absolute;left:6px;color:var(--accent);font-size:24px;line-height:1;top:-2px;}
+.rehab-highlight{position:relative;background:rgba(184,150,122,0.06);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:28px 36px 28px 56px;max-width:820px;margin:0 auto;}
+.rehab-highlight .rh-mark{position:absolute;left:18px;top:14px;font-family:var(--font-head);font-size:80px;line-height:1;color:var(--accent);opacity:0.15;}
+.rehab-highlight .rh-text{font-family:var(--font-head);font-style:italic;font-size:22px;line-height:1.4;color:var(--text-primary);}
+.rehab-highlight .rh-author{font-family:var(--font-ui);font-size:14px;color:var(--text-muted);margin-top:14px;}
+
+/* ===== FAQ ===== */
+.faq{background:var(--bg-secondary);}
+.faq-list{max-width:820px;margin:0 auto;}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden;}
+.faq-q{width:100%;background:none;border:none;text-align:left;cursor:pointer;padding:24px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--font-head);font-size:20px;color:var(--text-primary);}
+.faq-icon{flex-shrink:0;font-size:24px;color:var(--accent);transition:transform 0.3s;font-family:var(--font-ui);font-weight:300;}
+.faq-item.active .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.4s ease,opacity 0.4s ease;}
+.faq-item.active .faq-a{opacity:1;}
+.faq-a p{padding:0 28px 26px;font-size:18px;color:var(--text-secondary);line-height:1.6;}
+
+/* ===== REVIEWS ===== */
+.reviews{background:var(--bg-primary);}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:48px;}
+.review-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;flex-direction:column;opacity:0;transform:translateY(20px) rotate(1.5deg);transition:transform 0.6s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease,box-shadow 0.3s ease;}
+.review-card:nth-child(even){transform:translateY(20px) rotate(-1.5deg);}
+.review-card.visible{opacity:1;transform:translateY(0) rotate(0deg);}
+.review-card:hover{transform:translateY(-6px) rotate(0deg);box-shadow:0 20px 50px var(--shadow);}
+.review-intro{text-align:center;max-width:760px;margin:0 auto 44px;font-family:var(--font-head);font-style:italic;font-size:24px;color:var(--accent-muted);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:26px 0;line-height:1.4;}
+.reviews-hidden{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-height:0;overflow:hidden;transition:max-height 0.6s ease;margin-top:0;}
+.reviews-hidden.open{margin-top:28px;}
+.reviews-hidden .review-card{opacity:0;transform:translateY(20px) rotate(1.5deg);transition:transform 0.6s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease,box-shadow 0.3s ease;}
+.reviews-hidden .review-card:nth-child(even){transform:translateY(20px) rotate(-1.5deg);}
+.reviews-hidden .review-card.visible{opacity:1;transform:translateY(0) rotate(0deg);}
+.reviews-hidden .review-card.visible:hover{transform:translateY(-6px) rotate(0deg);box-shadow:0 20px 50px var(--shadow);}
+.reviews-more{text-align:center;margin-top:36px;}
+@media(max-width:768px){.reviews-hidden{grid-template-columns:1fr;}}
+.review-stars{color:var(--accent);font-size:15px;letter-spacing:2px;margin-bottom:16px;}
+.review-text{font-size:18px;color:var(--text-secondary);font-style:italic;line-height:1.55;margin-bottom:22px;flex-grow:1;}
+.review-foot{font-family:var(--font-ui);border-top:1px solid var(--border);padding-top:16px;}
+.review-name{font-size:15px;font-weight:500;color:var(--text-primary);}
+.review-proc{font-size:13px;color:var(--accent-muted);margin-top:2px;}
+.review-date{font-size:12px;color:var(--text-muted);margin-top:4px;}
+.platforms{display:flex;justify-content:center;gap:12px;flex-wrap:nowrap;margin-top:24px;}
+.platforms span{flex:1;max-width:160px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;padding:12px 16px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:100px;font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);white-space:nowrap;}
+.platforms .svg-ic{width:16px;height:16px;color:var(--accent);}
+
+/* ===== CLINIC / TRUST ===== */
+.clinic{background:var(--bg-secondary);}
+.clinic-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.clinic-block{background:#fff;border:1px solid var(--border);border-radius:16px;padding:40px;}
+.clinic-head{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+.clinic-head .ico{color:var(--accent);display:inline-flex;}
+.clinic-head .ico svg{width:26px;height:26px;}
+.clinic-head h3{font-size:23px;}
+.clinic-license{font-size:17px;color:var(--text-secondary);margin-bottom:28px;}
+.clinic-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.stat .num{font-family:var(--font-head);font-size:38px;color:var(--accent);line-height:1;}
+.stat .cap{font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);margin-top:6px;}
+.media-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.media-logo{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:84px;transition:box-shadow 0.3s ease;}
+.media-logo:hover{box-shadow:0 10px 30px var(--shadow);}
+.media-name{font-family:var(--font-head);font-style:italic;font-size:20px;color:var(--text-primary);}
+.media-cap{font-family:var(--font-ui);font-size:11px;color:var(--text-muted);margin-top:5px;letter-spacing:0.04em;}
+
+/* ===== FINAL CTA / FORM ===== */
+.final{background:var(--bg-primary);}
+.form-box{max-width:580px;margin:0 auto;text-align:center;}
+.form-box h2{font-size:38px;margin-bottom:18px;}
+.form-box .sub{font-size:20px;color:var(--text-secondary);margin-bottom:40px;}
+.form{display:flex;flex-direction:column;gap:16px;text-align:left;}
+.form input,.form select{
+  font-family:var(--font-ui);font-size:16px;padding:16px 20px;border:1px solid var(--border);
+  border-radius:8px;background:#fff;color:var(--text-primary);width:100%;transition:border-color 0.3s;
+}
+.form input:focus,.form select:focus{outline:none;border-color:var(--accent);}
+.form .btn{margin-top:6px;}
+.form-note{font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);text-align:center;margin-top:18px;}
+.form-disclaimer{font-family:var(--font-ui);font-size:12px;color:var(--text-muted);text-align:center;margin-top:10px;}
+.form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:48px 32px;gap:20px;}
+.form-success.visible{display:flex;animation:fadeUp 0.6s ease both;}
+.fs-title{font-family:var(--font-head);font-size:26px;color:var(--text-primary);}
+.fs-sub{font-family:var(--font-ui);font-size:15px;color:var(--text-muted);line-height:1.7;max-width:360px;}
+
+/* ===== HERO emotional subline ===== */
+.hero-emotion{font-family:var(--font-body);font-style:italic;font-size:20px;color:var(--accent-muted);margin-bottom:36px;animation:fadeUp 0.7s ease 0.5s both;}
+
+/* ===== FEARS ===== */
+.fears{background:var(--bg-primary);}
+.fears-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto;}
+.fear-card{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:36px;transition:border-color 0.3s ease,transform 0.6s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease,opacity 0.6s ease;opacity:0;transform:translateY(24px);}
+.fear-card.visible{opacity:1;transform:translateY(0);}
+.fears-grid .fear-card:nth-child(1){transition-delay:0s;}
+.fears-grid .fear-card:nth-child(2){transition-delay:0.12s;}
+.fears-grid .fear-card:nth-child(3){transition-delay:0.24s;}
+.fears-grid .fear-card:nth-child(4){transition-delay:0.36s;}
+.fear-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 18px 50px var(--shadow);}
+.fear-num{font-family:var(--font-head);font-size:52px;line-height:1;color:var(--accent);opacity:0.3;margin-bottom:14px;transition:opacity 0.3s ease;}
+.fear-card:hover .fear-num{opacity:0.3;}
+.fear-title{font-family:var(--font-head);font-style:italic;font-size:20px;color:var(--text-primary);margin-bottom:14px;}
+.fear-answer{font-family:var(--font-body);font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:22px;}
+.fear-line{width:40px;height:0;border-bottom:2px solid var(--accent);}
+
+/* ===== TRANSFORMATION ===== */
+.fears .section-head p,.transformation .section-head p{font-style:italic;}
+.transformation .section-head h2{font-size:44px;}
+.transformation{background:var(--bg-secondary);}
+.transform-grid{display:grid;grid-template-columns:1fr 1px 1fr;gap:48px;max-width:980px;margin:0 auto;align-items:start;}
+.transform-col{opacity:0;transition:opacity 0.8s ease,transform 0.8s ease;}
+.transform-col.before{transform:translateX(-24px);}
+.transform-col.after{transform:translateX(24px);}
+.transform-grid.visible .transform-col{opacity:1;transform:translateX(0);}
+.transform-head{font-family:var(--font-ui);text-transform:uppercase;letter-spacing:0.2em;font-size:13px;font-weight:500;margin-bottom:28px;}
+.transform-col.before .transform-head{color:var(--text-muted);}
+.transform-col.after .transform-head{color:var(--accent);}
+.transform-list{list-style:none;}
+.transform-list li{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border);font-family:var(--font-body);font-size:18px;line-height:1.5;}
+.transform-list li:last-child{border-bottom:none;}
+.transform-col.before .transform-list li{color:var(--text-muted);}
+.transform-col.after .transform-list li{color:var(--text-primary);}
+.transform-minus{flex-shrink:0;width:18px;text-align:center;color:var(--text-muted);font-family:var(--font-ui);}
+.transform-check{flex-shrink:0;color:var(--accent);display:inline-flex;margin-top:2px;}
+.transform-check svg{width:18px;height:18px;}
+.transform-divider{position:relative;background:var(--border);width:1px;}
+.transform-quote{max-width:760px;margin:56px auto 0;text-align:center;}
+.transform-quote p{font-family:var(--font-head);font-style:italic;font-size:24px;line-height:1.4;color:var(--text-primary);margin-bottom:16px;}
+.transform-quote .tq-author{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);}
+
+/* ===== PREP safety bar + supply steps ===== */
+.prep-safety{display:flex;gap:0;background:rgba(184,150,122,0.06);border:1px solid var(--border);border-radius:12px;padding:24px 32px;max-width:1000px;margin:0 auto 40px;}
+.prep-safety-item{flex:1;display:flex;gap:14px;align-items:flex-start;padding:0 28px;}
+.prep-safety-item:first-child{padding-left:0;}
+.prep-safety-item:last-child{padding-right:0;}
+.prep-safety-item:not(:last-child){border-right:1px solid var(--border);}
+.prep-safety-item .svg-ic{color:var(--accent);margin-top:2px;}
+.prep-safety-item p{font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);line-height:1.5;}
+.prep-safety-item b{color:var(--text-primary);font-weight:500;}
+.prep-supply{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;max-width:1000px;margin:48px auto 0;}
+.prep-supply-step{display:flex;gap:12px;align-items:flex-start;max-width:280px;}
+.prep-supply-step .svg-ic{color:var(--accent);margin-top:2px;flex-shrink:0;}
+.prep-supply-step p{font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);line-height:1.5;}
+.prep-supply-step b{color:var(--text-primary);font-weight:500;}
+.prep-supply-arrow{font-family:var(--font-head);font-size:24px;color:var(--accent);line-height:1;}
+
+/* ===== STICKY CTA (mobile) ===== */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:1500;padding:16px 22px;background:rgba(250,250,248,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--border);transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+.sticky-cta.visible{transform:translateY(0);}
+
+/* ===== Before/After hint ===== */
+.ba-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:7;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.9);border-radius:100px;padding:8px 16px;font-family:var(--font-ui);font-size:12px;color:var(--text-secondary);box-shadow:0 4px 16px var(--shadow);transition:opacity 0.4s ease;pointer-events:none;}
+.ba-hint svg{width:16px;height:16px;color:var(--accent);}
+.ba-hint.hidden{opacity:0;}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--bg-secondary);color:var(--text-secondary);padding:70px 0 36px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer .logo{margin-bottom:18px;}
+.footer .logo-mark{width:40px;height:40px;}
+.footer .logo-name{color:var(--text-primary);font-size:24px;}
+.footer-desc{font-size:17px;color:var(--text-muted);line-height:1.6;max-width:340px;}
+.footer h4{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-primary);margin-bottom:20px;}
+.footer-col a,.footer-col p{font-family:var(--font-ui);font-size:15px;color:var(--text-secondary);display:block;margin-bottom:12px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--accent);}
+.footer-disclaimer{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:28px;margin-bottom:14px;}
+.footer-copy{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);}
+
+/* ===== DOCS ===== */
+.docs{background:var(--bg-primary);}
+.docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto;}
+.doc-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:border-color 0.3s ease,transform 0.3s ease,box-shadow 0.3s ease;opacity:0;transform:translateY(20px);}
+.doc-card.visible{opacity:1;transform:translateY(0);}
+.doc-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 18px 50px var(--shadow);}
+.doc-ico{color:var(--accent);margin-bottom:20px;}
+.doc-ico svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.doc-title{font-family:var(--font-head);font-size:19px;color:var(--text-primary);margin-bottom:10px;line-height:1.3;}
+.doc-num{font-family:var(--font-ui);font-size:13px;color:var(--accent-muted);margin-bottom:6px;font-weight:500;}
+.doc-issuer{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);margin-bottom:6px;}
+.doc-date{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);margin-bottom:18px;}
+.doc-text{font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px;}
+.doc-preps{font-family:var(--font-ui);font-size:13px;color:var(--accent-muted);margin-bottom:18px;letter-spacing:0.03em;}
+.doc-status{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-ui);font-size:12px;color:#7BAE7F;background:rgba(123,174,127,0.1);border-radius:100px;padding:5px 14px;}
+.doc-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#7BAE7F;flex-shrink:0;}
+@media(max-width:768px){.docs-grid{grid-template-columns:1fr;}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1200px){
+  .hero-text h1{font-size:46px;}
+  .section-head h2{font-size:36px;}
+}
+@media(max-width:768px){
+  section{padding:70px 0;}
+  .container{padding:0 22px;}
+  .nav-links,.nav-phone{display:none;}
+  .burger{display:flex;}
+  .hero{padding:120px 0 60px;overflow:hidden;}
+  .hero-grid{grid-template-columns:1fr;gap:40px;width:100%;max-width:100%;overflow:hidden;}
+  .hero-bg{width:480px;height:480px;right:-30%;opacity:0.4;max-width:100vw;overflow:hidden;}
+  /* min-width:0 обязателен: иначе полоса фактов своей min-content шириной
+     распирает сетку и текст героя вылезает за экран (его срезает overflow:hidden). */
+  .hero-text{width:100%;max-width:100%;box-sizing:border-box;min-width:0;}
+  .hero-text h1{font-size:clamp(24px,7.2vw,34px);}
+  .hero-sub{font-size:16px;margin-bottom:24px;}
+  .hero-emotion{font-size:15px;margin-bottom:28px;}
+  .hero-cta{flex-direction:column;width:100%;max-width:100%;}
+  .hero-cta .btn{width:100%;max-width:100%;box-sizing:border-box;}
+  .btn-primary:not(.btn-sm),.btn-outline:not(.btn-sm){width:100%;}
+  .section-head h2{font-size:30px;}
+  .pain-grid{grid-template-columns:1fr;gap:32px;}
+  .steps{grid-template-columns:1fr;gap:28px;}
+  .steps::before{display:none;}
+  .process.in-view .steps::before{animation:none;}
+  .step{text-align:left;display:flex;gap:18px;align-items:flex-start;}
+  .step-num{font-size:38px;padding:0 8px;}
+  .step-body{padding-top:6px;}
+  .prep-acc-head{gap:14px;padding:22px 4px;}
+  .prep-acc-num{font-size:36px;}
+  .prep-acc-title .prep-name{font-size:20px;}
+  .prep-acc-inner{padding:8px 4px 28px 4px;}
+  .prep-acc-deco{font-size:140px;top:-20px;}
+  .ba-grid{grid-template-columns:1fr;max-width:300px;margin:0 auto;gap:32px;}
+  .quote-box{grid-template-columns:1fr;gap:32px;}
+  .doctor-photo-wrap{order:-1;aspect-ratio:auto;height:280px;}
+  .quote-deco{left:20px;font-size:140px;}
+  .quote-text{font-size:23px;}
+  .rehab-grid{grid-template-columns:1fr;}
+  .review-grid{grid-template-columns:1fr;}
+  .clinic-grid{grid-template-columns:1fr;}
+  .clinic-block{padding:30px;}
+  .footer-grid{grid-template-columns:1fr;gap:36px;}
+  .form-box h2{font-size:30px;}
+  .map-section h2{font-size:34px;}
+  .map-info{grid-template-columns:1fr;gap:0;}
+  .map-info-item{padding:18px 0;border-right:none;border-bottom:1px solid var(--border);}
+  .map-info-item:first-child{padding-top:0;}
+  .map-info-item:last-child{border-bottom:none;padding-bottom:0;}
+  .map-frame iframe{height:360px;}
+  .fears-grid{grid-template-columns:1fr;}
+  .transform-grid{grid-template-columns:1fr;gap:36px;}
+  .transform-divider{display:none;}
+  .transform-quote{margin-top:40px;}
+  .transform-quote p{font-size:21px;}
+  .prep-safety{flex-direction:column;gap:22px;padding:24px;}
+  .prep-safety-item{padding:0;}
+  .prep-safety-item:not(:last-child){border-right:none;border-bottom:1px solid var(--border);padding-bottom:22px;}
+  .prep-supply{flex-direction:column;gap:20px;}
+  .prep-supply-arrow{transform:rotate(90deg);}
+  .prep-supply-step{max-width:none;}
+  .nav-cta{padding:10px 16px;font-size:11px;letter-spacing:0.08em;}
+  /* Переносим факты на две строки: прокрутка вбок прятала третий пункт. */
+  .hero-facts{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px 18px;width:100%;max-width:100%;min-width:0;}
+  .hero-fact{font-size:13px;white-space:nowrap;}
+  .quote{padding:60px 0;}
+  .transformation{padding:60px 0;}
+  .rehab{padding:60px 0;}
+  .section-head{margin-bottom:32px;}
+  .section-head h2{font-size:28px;}
+  .platforms{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;gap:8px;}
+  .platforms span{font-size:12px;padding:10px 12px;}
+}
+@media(max-width:375px){
+  .container{padding:0 18px;}
+  .section-head h2{font-size:26px;}
+  .hero-facts{gap:10px 16px;}
+  .price-table{padding:10px 22px;}
+  .price-row{flex-direction:column;align-items:flex-start;gap:6px;}
+  .clinic-stats{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;}
+}
+/* ===== v22.1: Jost for small readable body text (Cormorant kept for large quotes/subtitles) ===== */
+.step p,
+.fear-answer,
+.doc-text,
+.doc-issuer,
+.doc-date,
+.rehab-card ul li,
+.faq-a p,
+.review-text,
+.prep-desc,
+.prep-benefits li,
+.prep-supply-step p,
+.transform-list li,
+.footer-desc,
+.ba-caption,
+.mobile-menu-tagline{
+  font-family:var(--font-ui);
+  font-size:15px;
+  line-height:1.75;
+  color:var(--text-secondary);
+  font-weight:400;
+}
+/* keep the intentionally muted "before" column in the transformation block */
+.transform-col.before .transform-list li{color:var(--text-muted);}
+/* ===== v22.2: stronger "show all reviews" button ===== */
+#reviewsToggle{
+  display:block;
+  margin:32px auto 0;
+  padding:14px 36px;
+  background:transparent;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  font-family:var(--font-ui);
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+  border-radius:2px;
+  transition:background 0.3s,color 0.3s,transform 0.2s;
+}
+#reviewsToggle:hover{
+  background:var(--accent);
+  color:#FAFAF8;
+  transform:translateY(-2px);
+}
+/* ===== v22.6: tighter section spacing on mobile ===== */
+@media(max-width:768px){
+  section{padding:56px 0;}
+  .section-head{margin-bottom:28px;}
+  .fear-card{padding:28px 24px;}
+  .doc-card{padding:24px;}
+}
+/* ===== v23: mobile menu fits without scroll (CTA always visible) ===== */
+.mobile-menu{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+}
+.mobile-nav{
+  flex:1;
+  overflow-y:auto;
+}
+.mobile-nav a{
+  font-size:17px;
+  padding:13px 28px;
+}
+.mobile-menu-foot{
+  flex-shrink:0;
+  padding:20px 28px;
+}
+.mobile-menu-tagline{
+  font-size:13px;
+  margin-bottom:12px;
+}
+.mobile-menu-phone{
+  font-size:16px;
+  margin-bottom:14px;
+}
+.mobile-menu-cta{
+  padding:14px;
+  font-size:12px;
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress indicator -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ===== HEADER / NAV ===== -->
+<header class="header" id="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#hero" class="logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 27 L16 5 L26 27"/><path d="M9.5 19 Q16 14.5 22.5 19"/></svg><span class="logo-name">Aurea</span></a>
+      <div class="nav-links">
+        <a href="#process">Процедура</a>
+        <a href="#prices">Цены</a>
+        <a href="#beforeafter">Работы</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">Вопросы</a>
+        <a href="#docs">Документы</a>
+        <a href="#map">Контакты</a>
+      </div>
+      <div class="nav-right">
+        <a href="tel:+79000000000" class="nav-phone">+7 (900) 000-00-00</a>
+        <a href="#final" class="btn btn-primary btn-sm nav-cta">Записаться</a>
+        <button class="burger" id="burger" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Навигация">
+  <div class="mobile-menu-head">
+    <div class="mobile-menu-logo">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 27 L16 5 L26 27"/>
+        <path d="M9.5 19 Q16 14.5 22.5 19"/>
+      </svg>
+      <span class="logo-name">Aurea</span>
+    </div>
+    <button class="mobile-close" id="mobileClose" aria-label="Закрыть меню">
+      <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <nav class="mobile-nav">
+    <a href="#process">Процедура</a>
+    <a href="#prices">Цены</a>
+    <a href="#beforeafter">Работы</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#faq">Вопросы</a>
+    <a href="#docs">Документы</a>
+    <a href="#map">Контакты</a>
+  </nav>
+
+  <div class="mobile-menu-foot">
+    <p class="mobile-menu-tagline">«Естественная красота — наша специализация»</p>
+    <a href="tel:+79000000000" class="mobile-menu-phone">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.16 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+      +7 (900) 000-00-00
+    </a>
+    <a href="#final" class="mobile-menu-cta">Записаться на консультацию</a>
+  </div>
+</div>
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero" id="hero">
+  <svg class="hero-bg" viewBox="0 0 780 780" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="390" cy="390" r="120" stroke="#E8E0D8" stroke-width="1"/>
+    <circle cx="390" cy="390" r="200" stroke="#E8E0D8" stroke-width="1"/>
+    <circle cx="390" cy="390" r="280" stroke="#E8E0D8" stroke-width="1"/>
+    <circle cx="390" cy="390" r="360" stroke="#E8E0D8" stroke-width="1"/>
+    <path d="M40 390 Q390 140 740 390" stroke="#E8E0D8" stroke-width="1" fill="none"/>
+    <path d="M40 390 Q390 640 740 390" stroke="#E8E0D8" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="label">Контурная пластика губ</span>
+        <h1>Губы, которые выглядят естественно — <span class="em">даже если это филлер</span></h1>
+        <p class="hero-sub">Коррекция формы, объёма и симметрии без операции. Результат виден сразу, анестезия включена.</p>
+        <p class="hero-emotion">«Вы поймаете себя на том, что улыбаетесь незнакомцам»</p>
+        <div class="hero-cta">
+          <a href="#final" class="btn btn-primary">Записаться на консультацию</a>
+          <a href="#beforeafter" class="btn btn-outline">Смотреть работы ↓</a>
+        </div>
+        <div class="hero-facts">
+          <div class="hero-fact"><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 40–60 минут</div>
+          <div class="hero-fact"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3s6 6 6 10a6 6 0 0 1-12 0c0-4 6-10 6-10z"/></svg> Анестезия включена</div>
+          <div class="hero-fact"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 11l-5.2 1.8L12 18l-1.8-5.2L5 11l5.2-1.8z"/></svg> Результат сразу</div>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="hero.jpg" alt="Контурная пластика губ — процедура введения филлера" class="hero-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. PAIN / SOLUTION ===== -->
+<section class="pain" id="pain">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="italic">Узнаёте себя?</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-col reveal">
+        <h3>Что беспокоит</h3>
+        <ul class="pain-list">
+          <li><span class="mark mark-x"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span> Губы от природы тонкие или асимметричные</li>
+          <li><span class="mark mark-x"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span> Опустились уголки рта — выражение лица кажется грустным</li>
+          <li><span class="mark mark-x"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span> Морщины вокруг рта и кисетные складки</li>
+          <li><span class="mark mark-x"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span> Хотите форму, но боитесь эффекта «переборщили»</li>
+        </ul>
+      </div>
+      <div class="pain-col solution reveal">
+        <h3>Что получите</h3>
+        <ul class="pain-list">
+          <li><span class="mark mark-v"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Объём и форма под анатомию вашего лица</li>
+          <li><span class="mark mark-v"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Приподнятые уголки — другое выражение лица</li>
+          <li><span class="mark mark-v"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Разглаженный контур без следов процедуры</li>
+          <li><span class="mark mark-v"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Индивидуальный подбор препарата и техники</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2.5 FEARS ===== -->
+<section class="fears" id="fears">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="italic">Мы знаем, что вас останавливает</h2>
+      <p>Честные ответы на то, о чём обычно не спрашивают вслух</p>
+    </div>
+    <div class="fears-grid">
+      <article class="fear-card">
+        <div class="fear-num">01</div>
+        <h3 class="fear-title">«Будет видно, что я что-то сделала»</h3>
+        <p class="fear-answer">Это самый частый страх. Мы работаем в технике «невидимой коррекции» — цель не изменить лицо, а улучшить то, что уже есть. Знакомые заметят, что вы хорошо выглядите. Не поймут почему.</p>
+        <div class="fear-line"></div>
+      </article>
+      <article class="fear-card">
+        <div class="fear-num">02</div>
+        <h3 class="fear-title">«Это очень больно»</h3>
+        <p class="fear-answer">Перед процедурой наносится анестезирующий крем на 15 минут. Большинство клиентов описывают ощущения как лёгкое давление. Многие засыпают в кресле.</p>
+        <div class="fear-line"></div>
+      </article>
+      <article class="fear-card">
+        <div class="fear-num">03</div>
+        <h3 class="fear-title">«А если мне не понравится результат»</h3>
+        <p class="fear-answer">Все препараты на основе гиалуроновой кислоты растворяются полностью за одну процедуру. Это обратимо. Мы никуда не торопимся — сначала консультация, потом решение.</p>
+        <div class="fear-line"></div>
+      </article>
+      <article class="fear-card">
+        <div class="fear-num">04</div>
+        <h3 class="fear-title">«Синяки и отёк на неделю»</h3>
+        <p class="fear-answer">Мы используем микроканюли вместо игл там где это возможно — в разы меньше травматизации. Большинство клиентов возвращаются к обычной жизни в тот же день.</p>
+        <div class="fear-line"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. PROCESS ===== -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="italic">Процедура шаг за шагом</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Консультация</h4>
+          <p>Врач оценивает анатомию губ, обсуждает желаемый результат, подбирает препарат</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Анестезия</h4>
+          <p>Наносится анестезирующий крем, ждём 10–15 минут. Процедура проходит комфортно</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Разметка зон</h4>
+          <p>Врач отмечает точки введения для симметричного результата</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Введение филлера</h4>
+          <p>Препарат вводится малыми дозами равномерно, 20–30 минут</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Финальный результат</h4>
+          <p>Лёгкий массаж для распределения, оценка результата. Вы уходите домой</p>
+        </div>
+      </div>
+    </div>
+    <div class="process-facts-line reveal">
+      <span><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 40–60 минут</span>
+      <span class="pf-dot">·</span>
+      <span><svg class="svg-ic" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg> Сразу домой</span>
+      <span class="pf-dot">·</span>
+      <span><svg class="svg-ic" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg> Эффект 8–12 мес</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. PREPARATIONS (redesign) ===== -->
+<section class="preps" id="preps">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Только сертифицированные препараты</h2>
+      <p>Врач подбирает препарат индивидуально — исходя из анатомии и желаемого результата</p>
+    </div>
+    <div class="prep-safety reveal">
+      <div class="prep-safety-item">
+        <svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3L4 7v5c0 5.25 3.5 10.05 8 11 4.5-.95 8-5.75 8-11V7l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p><b>Оригинальные препараты</b> · Только сертифицированные поставщики. Каждая упаковка с голограммой подлинности</p>
+      </div>
+      <div class="prep-safety-item">
+        <svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>
+        <p><b>Холодовая цепочка</b> · Хранение при t° 2–8°C согласно требованиям производителей</p>
+      </div>
+      <div class="prep-safety-item">
+        <svg class="svg-ic" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg>
+        <p><b>Таможенная очистка</b> · Все препараты прошли регистрацию в Росздравнадзоре</p>
+      </div>
+    </div>
+    <div class="prep-list reveal">
+
+      <!-- Juvederm Volift -->
+      <div class="prep-acc" data-acc>
+        <button class="prep-acc-head" type="button" aria-expanded="false">
+          <span class="prep-acc-num">01</span>
+          <span class="prep-acc-title">
+            <span class="prep-name">Juvederm Volift</span>
+            <span class="prep-country">Allergan · Франция</span>
+          </span>
+          <span class="prep-acc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"/><line x1="6" y1="12" x2="18" y2="12"/></svg></span>
+        </button>
+        <div class="prep-acc-body">
+          <div class="prep-acc-inner">
+            <span class="prep-acc-deco">J</span>
+            <p class="prep-desc">Премиум-филлер с технологией Vycross. Однородный гель для мягкого естественного объёма губ.</p>
+            <ul class="prep-benefits">
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Технология Vycross — максимальная однородность геля</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Мягкий объём без эффекта «уточки»</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Встроенный лидокаин — комфортное введение</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Клинически подтверждённая безопасность</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Равномерное распределение в тканях</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Постепенное рассасывание без резких изменений</li>
+            </ul>
+            <div class="prep-meta-row">
+              <span class="prep-meta-item">Плотность <b>средняя</b></span>
+              <span class="prep-meta-item">Срок <b>8–12 мес</b></span>
+              <span class="prep-meta-item">Назначение <b>объём и увлажнение</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stylage Special Lips -->
+      <div class="prep-acc" data-acc>
+        <button class="prep-acc-head" type="button" aria-expanded="false">
+          <span class="prep-acc-num">02</span>
+          <span class="prep-acc-title">
+            <span class="prep-name">Stylage Special Lips</span>
+            <span class="prep-country">Vivacy · Франция</span>
+          </span>
+          <span class="prep-acc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"/><line x1="6" y1="12" x2="18" y2="12"/></svg></span>
+        </button>
+        <div class="prep-acc-body">
+          <div class="prep-acc-inner">
+            <span class="prep-acc-deco">S</span>
+            <p class="prep-desc">Единственный филлер линейки, созданный специально для губ. Антиоксидант маннитол защищает препарат.</p>
+            <ul class="prep-benefits">
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Разработан исключительно для зоны губ</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Маннитол продлевает срок действия</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Bi-SOFT технология — двойная мягкость</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Минимальный отёк после процедуры</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Сохраняет подвижность и мимику</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Идеален для чувствительной кожи</li>
+            </ul>
+            <div class="prep-meta-row">
+              <span class="prep-meta-item">Плотность <b>мягкая</b></span>
+              <span class="prep-meta-item">Срок <b>8–10 мес</b></span>
+              <span class="prep-meta-item">Назначение <b>форма и контур</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Belotero Lips Shape -->
+      <div class="prep-acc" data-acc>
+        <button class="prep-acc-head" type="button" aria-expanded="false">
+          <span class="prep-acc-num">03</span>
+          <span class="prep-acc-title">
+            <span class="prep-name">Belotero Lips Shape</span>
+            <span class="prep-country">Merz · Швейцария</span>
+          </span>
+          <span class="prep-acc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"/><line x1="6" y1="12" x2="18" y2="12"/></svg></span>
+        </button>
+        <div class="prep-acc-body">
+          <div class="prep-acc-inner">
+            <span class="prep-acc-deco">B</span>
+            <p class="prep-desc">Швейцарская точность для чёткого контура. CPM-технология обеспечивает равномерную интеграцию.</p>
+            <ul class="prep-benefits">
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> CPM-технология — равномерная интеграция в ткань</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Чёткий контур без уплотнений</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Коррекция асимметрии с высокой точностью</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Не смещается после введения</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Швейцарские стандарты производства</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Подходит для тонкой кожи губ</li>
+            </ul>
+            <div class="prep-meta-row">
+              <span class="prep-meta-item">Плотность <b>лёгкая</b></span>
+              <span class="prep-meta-item">Срок <b>6–9 мес</b></span>
+              <span class="prep-meta-item">Назначение <b>контур и симметрия</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Radiesse -->
+      <div class="prep-acc" data-acc>
+        <button class="prep-acc-head" type="button" aria-expanded="false">
+          <span class="prep-acc-num">04</span>
+          <span class="prep-acc-title">
+            <span class="prep-name">Radiesse</span>
+            <span class="prep-country">Merz · США</span>
+          </span>
+          <span class="prep-acc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"/><line x1="6" y1="12" x2="18" y2="12"/></svg></span>
+        </button>
+        <div class="prep-acc-body">
+          <div class="prep-acc-inner">
+            <span class="prep-acc-deco">R</span>
+            <p class="prep-desc">Биостимулятор на основе гидроксиапатита кальция. Заполняет объём и запускает выработку собственного коллагена.</p>
+            <ul class="prep-benefits">
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Двойной эффект: объём + стимуляция коллагена</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Самый долгий срок действия в линейке</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Биосовместимый состав — максимальная безопасность</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Немедленный и долгосрочный результат</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Эффект омоложения кожи вокруг губ</li>
+              <li><span class="check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Рекомендован для возрастной коррекции</li>
+            </ul>
+            <div class="prep-meta-row">
+              <span class="prep-meta-item">Плотность <b>высокая</b></span>
+              <span class="prep-meta-item">Срок <b>до 18 мес</b></span>
+              <span class="prep-meta-item">Назначение <b>объём и коллаген</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="prep-supply reveal">
+      <div class="prep-supply-step">
+        <svg class="svg-ic" viewBox="0 0 24 24"><path d="M1 7h13v9H1zM14 10h4l3 3v3h-7z"/><circle cx="5.5" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg>
+        <p><b>Поставка</b> · Напрямую от официального дистрибьютора, минуя посредников</p>
+      </div>
+      <span class="prep-supply-arrow">→</span>
+      <div class="prep-supply-step">
+        <svg class="svg-ic" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M6 9h12M10 5v2M10 13v4"/></svg>
+        <p><b>Хранение</b> · Медицинский холодильник при t° 2–8°C, ежедневный мониторинг</p>
+      </div>
+      <span class="prep-supply-arrow">→</span>
+      <div class="prep-supply-step">
+        <svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3L4 7v5c0 5.25 3.5 10.05 8 11 4.5-.95 8-5.75 8-11V7l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p><b>Проверка</b> · Врач вскрывает упаковку при вас и показывает серийный номер</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. BEFORE / AFTER ===== -->
+<section class="beforeafter" id="beforeafter">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="italic">Работы врача</h2>
+    </div>
+    <div class="ba-grid">
+      <!-- Slider 1 -->
+      <div class="ba-item reveal">
+        <div class="ba-slider" data-slider>
+          <div class="ba-layer ba-after"><img class="ba-img" src="work1-after.jpg" alt="После процедуры"></div>
+          <div class="ba-layer ba-before" data-before><img class="ba-img" src="work1-before.jpg" alt="До процедуры"></div>
+          <span class="ba-tag ba-tag-before">До</span>
+          <span class="ba-tag ba-tag-after">После</span>
+          <div class="ba-divider" data-divider></div>
+          <div class="ba-handle" data-handle>↔</div>
+          <div class="ba-hint" id="baHint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>
+            Потяните разделитель
+          </div>
+        </div>
+        <p class="ba-caption"><b>Зона:</b> объём и контур · <b>Препарат:</b> Juvederm Volift · <b>Врач:</b> Соколова Е.А.</p>
+      </div>
+      <!-- Slider 2 -->
+      <div class="ba-item reveal">
+        <div class="ba-slider" data-slider>
+          <div class="ba-layer ba-after"><img class="ba-img" src="work2-after.jpg" alt="После процедуры"></div>
+          <div class="ba-layer ba-before" data-before><img class="ba-img" src="work2-before.jpg" alt="До процедуры"></div>
+          <span class="ba-tag ba-tag-before">До</span>
+          <span class="ba-tag ba-tag-after">После</span>
+          <div class="ba-divider" data-divider></div>
+          <div class="ba-handle" data-handle>↔</div>
+        </div>
+        <p class="ba-caption"><b>Зона:</b> приподнятые уголки · <b>Препарат:</b> Stylage Special Lips · <b>Врач:</b> Соколова Е.А.</p>
+      </div>
+      <!-- Slider 3 -->
+      <div class="ba-item reveal">
+        <div class="ba-slider" data-slider>
+          <div class="ba-layer ba-after"><img class="ba-img" src="work3-after.jpg" alt="После процедуры"></div>
+          <div class="ba-layer ba-before" data-before><img class="ba-img" src="work3-before.jpg" alt="До процедуры"></div>
+          <span class="ba-tag ba-tag-before">До</span>
+          <span class="ba-tag ba-tag-after">После</span>
+          <div class="ba-divider" data-divider></div>
+          <div class="ba-handle" data-handle>↔</div>
+        </div>
+        <p class="ba-caption"><b>Зона:</b> коррекция контура · <b>Препарат:</b> Belotero Lips Shape · <b>Врач:</b> Соколова Е.А.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. DOCTOR QUOTE ===== -->
+<section class="quote" id="quote">
+  <div class="container">
+    <div class="quote-box reveal">
+      <span class="quote-deco">“</span>
+      <div class="quote-content">
+        <span class="quote-label">Слово врача</span>
+        <p class="quote-text">Моя цель — не объём ради объёма. Я работаю с анатомией лица, чтобы результат выглядел так, будто вы просто хорошо отдохнули</p>
+        <div class="quote-author">
+          <div class="name">Екатерина Соколова</div>
+          <div class="spec">Врач-косметолог, дерматовенеролог</div>
+          <div class="exp">Стаж: 9 лет</div>
+        </div>
+        <ul class="quote-facts">
+          <li><svg class="svg-ic" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"/></svg> Сертифицированный тренер по контурной пластике</li>
+          <li><svg class="svg-ic" viewBox="0 0 24 24"><path d="M18 2l4 4M19.5 5.5l-2-2M14 8l2 2M4 21l5-5M16 6L6 16l-2.5.5L4 14z"/></svg> Более 3 000 процедур выполнено лично</li>
+          <li><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 4l2.3 5.2 5.7.5-4.3 3.8 1.3 5.6L12 16.8 6.7 19.1l1.3-5.6L3.7 9.7l5.7-.5z"/></svg> Средняя оценка пациентов — 4.9 из 5</li>
+        </ul>
+      </div>
+      <div class="doctor-photo-wrap">
+        <img src="doctor.jpg" alt="Екатерина Соколова, врач-косметолог" class="doctor-photo-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6.5 TRANSFORMATION ===== -->
+<section class="transformation" id="transformation">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="italic">До Aurea — и после</h2>
+      <p>Не фотографии. Ощущения</p>
+    </div>
+    <div class="transform-grid">
+      <div class="transform-col before">
+        <div class="transform-head">Раньше</div>
+        <ul class="transform-list">
+          <li><span class="transform-minus">—</span> Избегала фотографий в профиль</li>
+          <li><span class="transform-minus">—</span> Улыбалась с закрытым ртом</li>
+          <li><span class="transform-minus">—</span> Комплексовала из-за асимметрии</li>
+          <li><span class="transform-minus">—</span> Думала «это не для меня»</li>
+        </ul>
+      </div>
+      <div class="transform-divider" aria-hidden="true"></div>
+      <div class="transform-col after">
+        <div class="transform-head">Теперь</div>
+        <ul class="transform-list">
+          <li><span class="transform-check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Первой смотрит на свои фото</li>
+          <li><span class="transform-check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Улыбается — и получает комплименты</li>
+          <li><span class="transform-check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Видит гармонию там, где раньше — недостаток</li>
+          <li><span class="transform-check"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span> Записывается повторно через 10 месяцев</li>
+        </ul>
+      </div>
+    </div>
+    <div class="transform-quote reveal">
+      <p>«Самое частое, что я слышу от клиентов после процедуры: „Почему я так долго боялась?“»</p>
+      <div class="tq-author">— Екатерина Соколова</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. PRICES ===== -->
+<section class="prices" id="prices">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Стоимость процедуры</h2>
+      <p>Точную цену озвучит врач после консультации — она зависит от препарата и объёма</p>
+    </div>
+    <div class="price-banner reveal"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 13h16M12 9v11"/><path d="M12 9C10.5 9 8 8.5 8 6.5S10.5 4 12 9zM12 9c1.5 0 4-.5 4-2.5S13.5 4 12 9z"/></svg> Консультация бесплатно при записи через сайт</div>
+    <div class="price-table reveal">
+      <div class="price-row">
+        <span class="price-name">Консультация косметолога</span>
+        <span class="price-val price-free">Бесплатно при записи</span>
+      </div>
+      <div class="price-row">
+        <span class="price-name">Контурная пластика губ (1 мл)</span>
+        <span class="price-val">от 18 000 ₽</span>
+      </div>
+      <div class="price-row">
+        <span class="price-name">Коррекция контура губ (0.5 мл)</span>
+        <span class="price-val">от 12 000 ₽</span>
+      </div>
+      <div class="price-row">
+        <span class="price-name">Контурная пластика скул (1 мл)</span>
+        <span class="price-val">от 22 000 ₽</span>
+      </div>
+      <div class="price-row">
+        <span class="price-name">Коррекция носогубных складок</span>
+        <span class="price-val">от 16 000 ₽</span>
+      </div>
+    </div>
+    <div class="price-cta reveal">
+      <a href="#final" class="btn btn-primary">Узнать точную стоимость</a>
+      <p class="price-disclaimer">Цены указаны ориентировочно и могут отличаться</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. REHABILITATION ===== -->
+<section class="rehab" id="rehab">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>После процедуры</h2>
+    </div>
+    <div class="rehab-grid">
+      <div class="rehab-card reveal">
+        <div class="rehab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h4>1–3 дня</h4>
+        <ul>
+          <li>Возможна лёгкая отёчность и покраснение — это норма</li>
+          <li>Не трогать зону руками</li>
+          <li>Не наносить макияж</li>
+        </ul>
+      </div>
+      <div class="rehab-card reveal">
+        <div class="rehab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></div>
+        <h4>До 7 дней</h4>
+        <ul>
+          <li>Избегать сауны, бани, активных спортивных нагрузок</li>
+          <li>Не употреблять алкоголь</li>
+        </ul>
+      </div>
+      <div class="rehab-card reveal">
+        <div class="rehab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 11l-5.2 1.8L12 18l-1.8-5.2L5 11l5.2-1.8z"/></svg></div>
+        <h4>До 14 дней</h4>
+        <ul>
+          <li>Окончательный результат виден после спадения отёка</li>
+          <li>При необходимости — коррекция у врача</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rehab-highlight reveal">
+      <span class="rh-mark">“</span>
+      <p class="rh-text">Большинство клиентов возвращаются к обычной жизни в тот же день</p>
+      <p class="rh-author">— Екатерина Соколова, врач-косметолог</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9. FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Частые вопросы</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">Больно ли делать контурную пластику?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Нет. Перед процедурой наносится анестезирующий крем, который действует 10–15 минут. Большинство клиентов описывают ощущения как лёгкое давление.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Эффект виден сразу?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Да, сразу после процедуры. В первые 2–3 дня возможна лёгкая отёчность, окончательный результат оценивается через 7–14 дней.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Как долго держится результат?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>В среднем 8–12 месяцев, в зависимости от препарата, особенностей метаболизма и техники введения.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Можно ли растворить филлер, если не понравится?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Да. Филлеры на основе гиалуроновой кислоты растворяются препаратом гиалуронидазой за одну процедуру.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Будут ли синяки?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Небольшие гематомы в точках введения возможны, но проходят за 2–5 дней. Врач использует тонкие иглы и канюли для минимизации травматизации.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Выглядит ли результат естественно?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Зависит от техники и препарата. Наш врач работает в концепции «натуральное увеличение» — цель не объём, а гармония с лицом.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Как часто нужно повторять?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>По желанию, обычно через 8–12 месяцев когда препарат постепенно рассасывается. Повторная процедура часто требует меньше препарата.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Отзывы клиентов</h2>
+    </div>
+    <p class="review-intro reveal">«98% клиентов рекомендуют нас друзьям и возвращаются повторно»</p>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Делала впервые, очень боялась. Оказалось совсем не страшно — почти не больно. Результатом очень довольна, выглядит абсолютно естественно. Подруги спрашивают, что изменилось»</p>
+        <div class="review-foot">
+          <div class="review-name">Анна</div>
+          <div class="review-proc">Контурная пластика губ</div>
+          <div class="review-date">Август 2024</div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Уже третий раз прихожу именно сюда. Врач всегда объясняет что делает и почему. Губы после процедуры выглядят как будто всегда такими были»</p>
+        <div class="review-foot">
+          <div class="review-name">Мария</div>
+          <div class="review-proc">Коррекция формы</div>
+          <div class="review-date">Октябрь 2024</div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Боялась эффекта "уточки", но врач сразу объяснила — так не будет. Сделали коррекцию контура, без объёма. Очень рада результату»</p>
+        <div class="review-foot">
+          <div class="review-name">Екатерина</div>
+          <div class="review-proc">Коррекция контура</div>
+          <div class="review-date">Январь 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-hidden" id="reviewsHidden">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Долго собиралась с духом. Екатерина очень детально объяснила весь процесс, показала примеры работ. В итоге решилась — и не пожалела ни секунды. Всё прошло быстро и практически безболезненно»</p>
+        <div class="review-foot">
+          <div class="review-name">Ольга</div>
+          <div class="review-proc">Контурная пластика губ</div>
+          <div class="review-date">Март 2025</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Пришла с конкретной задачей — убрать асимметрию. Врач сразу всё увидела и предложила точечную коррекцию без лишнего объёма. Результат — именно то, что хотела. Никакой "сделанности"»</p>
+        <div class="review-foot">
+          <div class="review-name">Виктория</div>
+          <div class="review-proc">Коррекция контура</div>
+          <div class="review-date">Февраль 2025</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Делаю уже четвёртый раз. Каждый раз результат лучше, потому что врач помнит мои особенности и пожелания. Клиника чистая, персонал вежливый, запись удобная»</p>
+        <div class="review-foot">
+          <div class="review-name">Наталья</div>
+          <div class="review-proc">Контурная пластика губ</div>
+          <div class="review-date">Январь 2025</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Боялась синяков перед важным мероприятием. Предупредила врача — она подобрала технику с минимальной травматизацией. На следующий день уже была на встрече, никто ничего не заметил»</p>
+        <div class="review-foot">
+          <div class="review-name">Дарья</div>
+          <div class="review-proc">Juvederm Volift</div>
+          <div class="review-date">Декабрь 2024</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Первый раз доверилась косметологу после неудачного опыта в другом месте. Здесь всё иначе — врач сначала долго слушала, что мне не понравилось раньше, и сделала именно так, как я хотела»</p>
+        <div class="review-foot">
+          <div class="review-name">Алина</div>
+          <div class="review-proc">Контурная пластика губ</div>
+          <div class="review-date">Ноябрь 2024</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Уголки рта опустились с возрастом, выглядела постоянно недовольной. После процедуры выражение лица совершенно другое — выгляжу отдохнувшей и доброй. Муж заметил сразу, но не понял что изменилось»</p>
+        <div class="review-foot">
+          <div class="review-name">Ирина</div>
+          <div class="review-proc">Коррекция уголков губ</div>
+          <div class="review-date">Октябрь 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-more reveal">
+      <button class="btn btn-outline" id="reviewsToggle" data-state="closed">Смотреть все отзывы ↓</button>
+    </div>
+
+    <div class="platforms reveal" style="margin-top:48px;">
+      <span><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 4l2.3 5.2 5.7.5-4.3 3.8 1.3 5.6L12 16.8 6.7 19.1l1.3-5.6L3.7 9.7l5.7-.5z"/></svg> 4.9 Яндекс.Карты</span>
+      <span><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 4l2.3 5.2 5.7.5-4.3 3.8 1.3 5.6L12 16.8 6.7 19.1l1.3-5.6L3.7 9.7l5.7-.5z"/></svg> 5.0 2GIS</span>
+      <span><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 4l2.3 5.2 5.7.5-4.3 3.8 1.3 5.6L12 16.8 6.7 19.1l1.3-5.6L3.7 9.7l5.7-.5z"/></svg> 4.8 Zoon</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11. CLINIC / TRUST ===== -->
+<section class="clinic" id="clinic">
+  <div class="container">
+    <div class="clinic-grid">
+      <div class="clinic-block reveal">
+        <div class="clinic-head">
+          <span class="ico"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3L4 7v5c0 5.25 3.5 10.05 8 11 4.5-.95 8-5.75 8-11V7l-8-4z"/></svg></span>
+          <h3>Лицензия и факты</h3>
+        </div>
+        <p class="clinic-license">Лицензия на медицинскую деятельность №Л041-01137-77/00123456 от 15.03.2021</p>
+        <div class="clinic-stats">
+          <div class="stat"><div class="num"><span>7</span>+</div><div class="cap">лет на рынке</div></div>
+          <div class="stat"><div class="num"><span>2 000</span>+</div><div class="cap">процедур в год</div></div>
+          <div class="stat"><div class="num"><span>12</span></div><div class="cap">специалистов</div></div>
+          <div class="stat"><div class="num"><span>98</span>%</div><div class="cap">довольных клиентов</div></div>
+        </div>
+      </div>
+      <div class="clinic-block reveal">
+        <div class="clinic-head">
+          <span class="ico"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg></span>
+          <h3>О нас пишут</h3>
+        </div>
+        <div class="media-grid">
+          <div class="media-logo"><span class="media-name">Vogue Beauty</span><span class="media-cap">Лучшие клиники Москвы · 2024</span></div>
+          <div class="media-logo"><span class="media-name">Elle Россия</span><span class="media-cap">Топ косметологов · 2024</span></div>
+          <div class="media-logo"><span class="media-name">Marie Claire</span><span class="media-cap">Красота и уход · 2025</span></div>
+          <div class="media-logo"><span class="media-name">Tatler</span><span class="media-cap">Beauty-адреса · 2025</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11.5 DOCS / LICENSES ===== -->
+<section class="docs" id="docs">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Документы и лицензии</h2>
+      <p class="italic">Работаем прозрачно — все разрешения в открытом доступе</p>
+    </div>
+    <div class="docs-grid">
+      <!-- Doc 1 -->
+      <article class="doc-card">
+        <div class="doc-ico"><svg viewBox="0 0 24 24"><path d="M12 3L4 7v5c0 5.25 3.5 10.05 8 11 4.5-.95 8-5.75 8-11V7l-8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 class="doc-title">Лицензия на медицинскую деятельность</h3>
+        <p class="doc-num">№ Л041-01137-77/00123456</p>
+        <p class="doc-issuer">Департамент здравоохранения г. Москвы</p>
+        <p class="doc-date">15 марта 2021 года · Действует бессрочно</p>
+        <span class="doc-status">Действующая</span>
+      </article>
+      <!-- Doc 2 -->
+      <article class="doc-card">
+        <div class="doc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M12 6.5l1 2 2.2.2-1.7 1.5.5 2.2L12 11.2 9.9 12.4l.5-2.2-1.7-1.5 2.2-.2z"/><path d="M9 14.5L7.5 22l4.5-2.5L16.5 22 15 14.5"/></svg></div>
+        <h3 class="doc-title">Сертификат соответствия ISO 9001:2026</h3>
+        <p class="doc-num">№ RU.ИС.04.01.26.00847</p>
+        <p class="doc-issuer">Росстандарт, орган по сертификации</p>
+        <p class="doc-date">12 января 2026 года · Действует до 2029</p>
+        <span class="doc-status">Действующий</span>
+      </article>
+      <!-- Doc 3 -->
+      <article class="doc-card">
+        <div class="doc-ico"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><circle cx="12" cy="14" r="2.4"/><path d="M12 16.4V19"/></svg></div>
+        <h3 class="doc-title">Регистрационные удостоверения препаратов</h3>
+        <p class="doc-text">Все используемые филлеры зарегистрированы в Росздравнадзоре. Оригинальная продукция от официальных дистрибьюторов.</p>
+        <p class="doc-preps">Juvederm · Stylage · Belotero · Radiesse</p>
+        <span class="doc-status">Оригинальные</span>
+      </article>
+      <!-- Doc 4 -->
+      <article class="doc-card">
+        <div class="doc-ico"><svg viewBox="0 0 24 24"><path d="M12 3a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z"/><path d="M12 11v8a3 3 0 0 0 3 3"/><path d="M12 11v0"/></svg></div>
+        <h3 class="doc-title">Полис страхования профессиональной ответственности</h3>
+        <p class="doc-num">№ СО-2026/МД/00391-А</p>
+        <p class="doc-issuer">АО «СберСтрахование», г. Москва</p>
+        <p class="doc-date">Действует с 01.01.2026 по 31.12.2026</p>
+        <span class="doc-status">Действующий</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 12. FINAL CTA / FORM ===== -->
+<section class="final" id="final">
+  <div class="container">
+    <div class="form-box reveal">
+      <h2>Запишитесь на бесплатную консультацию</h2>
+      <p class="sub">Врач ответит на все вопросы и подберёт оптимальное решение именно для вас</p>
+      <form class="form" id="bookingForm">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+        <select name="time" required>
+          <option value="" disabled selected>Удобное время</option>
+          <option value="morning">Утро 9–12</option>
+          <option value="day">День 12–17</option>
+          <option value="evening">Вечер 17–21</option>
+        </select>
+        <input type="text" name="source" placeholder="Откуда вы о нас узнали? (необязательно)">
+        <button type="submit" class="btn btn-primary btn-full">Записаться на консультацию</button>
+        <p class="form-note">Перезвоним в течение 15 минут в рабочее время</p>
+        <p class="form-disclaimer">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="27" stroke="#7BAE7F" stroke-width="1.5"/>
+          <path d="M16 28l8 8 16-16" stroke="#7BAE7F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="fs-title">Заявка принята</p>
+        <p class="fs-sub">Мы перезвоним вам в течение 15 минут в рабочее время</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAP ===== -->
+<section class="map-section" id="map">
+  <div class="container">
+    <span class="label">КАК НАС НАЙТИ</span>
+    <h2>Мы в Москве</h2>
+    <p class="map-sub">г. Москва, ул. Тверская, д. 18, стр. 2 · Пн–Сб 9:00–21:00, Вс 10:00–19:00</p>
+    <div class="map-frame">
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=37.605698%2C55.763526&z=15&pt=37.605698%2C55.763526%2Cpm2rdm&l=map&sidebar=0&searchbar=0" title="Aurea на карте" loading="lazy"></iframe>
+    </div>
+    <div class="map-info">
+      <div class="map-info-item">
+        <div class="map-info-label">АДРЕС</div>
+        <div class="map-info-value">ул. Тверская, д. 18, стр. 2, Москва</div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-info-label">МЕТРО</div>
+        <div class="map-info-value">5 минут от ст. Тверская (зелёная линия)</div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-info-label">ПАРКОВКА</div>
+        <div class="map-info-value">Бесплатная парковка во дворе, 10 мест</div>
+      </div>
+    </div>
+    <a href="https://yandex.ru/maps/?text=Москва%2C+ул.+Тверская%2C+д.+18%2C+стр.+2" class="map-link" target="_blank">Построить маршрут →</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo footer-logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 27 L16 5 L26 27"/><path d="M9.5 19 Q16 14.5 22.5 19"/></svg><span class="logo-name">Aurea</span></div>
+        <p class="footer-desc">Эстетическая косметология. Контурная пластика, биоревитализация и уход за кожей в концепции естественной красоты.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <a href="#process">Процедура</a>
+        <a href="#prices">Цены</a>
+        <a href="#beforeafter">Работы</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <p>г. Москва, ул. Тверская, д. 18, стр. 2</p>
+        <a href="tel:+79000000000">+7 (900) 000-00-00</a>
+        <a href="mailto:hello@aurea.ru">hello@aurea.ru</a>
+        <p>Пн–Сб 9:00–21:00, Вс 10:00–19:00</p>
+      </div>
+    </div>
+    <p class="footer-disclaimer">Имеются противопоказания. Необходима консультация специалиста.</p>
+    <p class="footer-copy">© 2026 Aurea. Все права защищены.</p>
+  </div>
+</footer>
+
+<!-- ===== STICKY CTA (mobile) ===== -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#final" class="btn btn-primary btn-full">Записаться на консультацию</a>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ===== Sticky header background on scroll ===== */
+  var header = document.getElementById('header');
+  function onScroll(){
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ===== Mobile menu ===== */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('overlay');
+  var closeBtn = document.getElementById('mobileClose');
+  function openMenu(){ menu.classList.add('open'); overlay.classList.add('open'); }
+  function closeMenu(){ menu.classList.remove('open'); overlay.classList.remove('open'); }
+  burger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  /* ===== Scroll reveal via IntersectionObserver ===== */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  /* ===== Process line draw (in-view) ===== */
+  var process = document.querySelector('.process');
+  if(process){
+    if('IntersectionObserver' in window){
+      var pio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ process.classList.add('in-view'); pio.unobserve(process); }
+        });
+      }, {threshold:0.25});
+      pio.observe(process);
+    } else {
+      process.classList.add('in-view');
+    }
+  }
+
+  /* ===== Animated stat counters ===== */
+  function formatNum(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var duration = 1500, startTime = null;
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 4); // easeOutQuart
+      el.textContent = formatNum(Math.floor(eased * target));
+      if(p < 1){ requestAnimationFrame(step); }
+      else { el.textContent = formatNum(target); }
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if('IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }
+      });
+    }, {threshold:0.5});
+    counters.forEach(function(el){ cio.observe(el); });
+  } else {
+    counters.forEach(function(el){ el.textContent = formatNum(parseInt(el.getAttribute('data-count'),10)||0); });
+  }
+
+  /* ===== FAQ accordion ===== */
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(function(other){
+        other.classList.remove('active');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isActive){
+        item.classList.add('active');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ===== Before / After sliders (mouse + touch) ===== */
+  document.querySelectorAll('[data-slider]').forEach(function(slider){
+    var before = slider.querySelector('[data-before]');
+    var divider = slider.querySelector('[data-divider]');
+    var handle = slider.querySelector('[data-handle]');
+    var dragging = false;
+
+    function setPos(clientX){
+      var rect = slider.getBoundingClientRect();
+      var x = clientX - rect.left;
+      var pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      // У краёв прилипаем к 0/100: ручка радиусом 21px упирается в край раньше,
+      // чем её центр доходит до него, иначе остаётся полоска соседнего фото.
+      var snap = 26, snapped = false;
+      if(x <= snap){ pct = 0; snapped = true; }
+      else if(x >= rect.width - snap){ pct = 100; snapped = true; }
+      // Плавность оставляем на клике и на прилипании к краю, в остальном перетаскивании — выключаем.
+      slider.classList.toggle('dragging', moved && !snapped);
+      before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      divider.style.left = pct + '%';
+      handle.style.left = pct + '%';
+    }
+    var moved = false;
+    function start(e){
+      dragging = true;
+      moved = false;
+      // Первый клик — без класса .dragging, чтобы разделитель плавно доехал до места.
+      setPos(e.touches ? e.touches[0].clientX : e.clientX);
+    }
+    function end(){
+      dragging = false;
+      moved = false;
+      slider.classList.remove('dragging');
+    }
+    function move(e){
+      if(!dragging) return;
+      // Пошло реальное перетаскивание — выключаем плавность, чтобы идти за курсором точно.
+      if(!moved){ moved = true; slider.classList.add('dragging'); }
+      var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      setPos(clientX);
+      if(e.cancelable) e.preventDefault();
+    }
+    before.style.clipPath = 'inset(0 50% 0 0)';
+
+    slider.addEventListener('mousedown', start);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    slider.addEventListener('touchstart', start, {passive:true});
+    slider.addEventListener('touchmove', move, {passive:false});
+    slider.addEventListener('touchend', end);
+  });
+
+  /* ===== Scroll progress + hero parallax ===== */
+  var progress = document.getElementById('scrollProgress');
+  var heroBg = document.querySelector('.hero-bg');
+  var isMobile = window.matchMedia('(max-width:768px)').matches;
+  window.addEventListener('resize', function(){ isMobile = window.matchMedia('(max-width:768px)').matches; });
+  window.addEventListener('scroll', function(){
+    var scrolled = window.scrollY || window.pageYOffset;
+    if(progress){
+      var docHeight = document.body.scrollHeight - window.innerHeight;
+      progress.style.width = (docHeight > 0 ? (scrolled / docHeight) * 100 : 0) + '%';
+    }
+    if(heroBg && !isMobile){
+      heroBg.style.transform = 'translateY(calc(-50% + ' + (scrolled * 0.15) + 'px))';
+    }
+  }, {passive:true});
+
+  /* ===== Reviews show all / hide (cascade reveal) ===== */
+  var reviewsToggle = document.getElementById('reviewsToggle');
+  var reviewsHidden = document.getElementById('reviewsHidden');
+  if(reviewsToggle && reviewsHidden){
+    var hiddenCards = reviewsHidden.querySelectorAll('.review-card');
+    reviewsToggle.addEventListener('click', function(){
+      if(reviewsToggle.getAttribute('data-state') === 'closed'){
+        reviewsHidden.classList.add('open');
+        reviewsHidden.style.maxHeight = reviewsHidden.scrollHeight + 'px';
+        hiddenCards.forEach(function(card, i){
+          setTimeout(function(){ card.classList.add('visible'); }, 100 + i * 80);
+        });
+        reviewsToggle.setAttribute('data-state','open');
+        reviewsToggle.textContent = 'Скрыть ↑';
+        // keep container height fitting after cards animate in
+        setTimeout(function(){ if(reviewsHidden.classList.contains('open')) reviewsHidden.style.maxHeight = reviewsHidden.scrollHeight + 'px'; }, hiddenCards.length * 80 + 200);
+      } else {
+        reviewsHidden.style.maxHeight = '0px';
+        reviewsHidden.classList.remove('open');
+        hiddenCards.forEach(function(card){ card.classList.remove('visible'); });
+        reviewsToggle.setAttribute('data-state','closed');
+        reviewsToggle.textContent = 'Смотреть все отзывы ↓';
+      }
+    });
+  }
+
+  /* ===== Phone input autoformat: +7 (XXX) XXX-XX-XX ===== */
+  var phoneInput = document.querySelector('#bookingForm input[type="tel"]');
+  if(phoneInput){
+    function formatPhone(value){
+      var digits = value.replace(/\D/g, '');
+      if(digits[0] === '7' || digits[0] === '8'){ digits = digits.slice(1); }
+      digits = digits.slice(0, 10);
+      var out = '+7';
+      if(digits.length > 0){ out += ' (' + digits.slice(0,3); }
+      if(digits.length >= 3){ out += ')'; }
+      if(digits.length > 3){ out += ' ' + digits.slice(3,6); }
+      if(digits.length > 6){ out += '-' + digits.slice(6,8); }
+      if(digits.length > 8){ out += '-' + digits.slice(8,10); }
+      return out;
+    }
+    function handlePhone(){ phoneInput.value = formatPhone(phoneInput.value); }
+    phoneInput.addEventListener('focus', function(){ if(!phoneInput.value){ phoneInput.value = '+7 ('; } });
+    phoneInput.addEventListener('input', handlePhone);
+    phoneInput.addEventListener('paste', function(){ setTimeout(handlePhone, 0); });
+    phoneInput.addEventListener('blur', function(){ if(phoneInput.value === '+7 (' || phoneInput.value === '+7'){ phoneInput.value = ''; } });
+  }
+
+  /* ===== Form submit ===== */
+  var form = document.getElementById('bookingForm');
+  var formSuccess = document.getElementById('formSuccess');
+  if(form && formSuccess){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      form.style.transition = 'opacity 0.4s ease';
+      form.style.opacity = '0';
+      setTimeout(function(){
+        form.style.display = 'none';
+        formSuccess.classList.add('visible');
+        var formSub = document.querySelector('.form-box .sub');
+        if(formSub){ formSub.style.display = 'none'; }
+      }, 400);
+    });
+  }
+
+
+  /* ===== Preparations accordion ===== */
+  var accItems = document.querySelectorAll('[data-acc]');
+  accItems.forEach(function(acc){
+    var head = acc.querySelector('.prep-acc-head');
+    var body = acc.querySelector('.prep-acc-body');
+    head.addEventListener('click', function(){
+      var isOpen = acc.classList.contains('open');
+      accItems.forEach(function(other){
+        other.classList.remove('open');
+        other.querySelector('.prep-acc-body').style.maxHeight = null;
+        other.querySelector('.prep-acc-head').setAttribute('aria-expanded', 'false');
+      });
+      if(!isOpen){
+        acc.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        head.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ===== Map frame scale-in ===== */
+  var mapFrame = document.querySelector('.map-frame');
+  if(mapFrame){
+    if('IntersectionObserver' in window){
+      var mfio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('visible'); mfio.unobserve(e.target); }
+        });
+      }, {threshold:0.2});
+      mfio.observe(mapFrame);
+    } else {
+      mapFrame.classList.add('visible');
+    }
+  }
+
+  /* ===== Map info items stagger reveal ===== */
+  var mapItems = document.querySelectorAll('.map-info-item');
+  if(mapItems.length && 'IntersectionObserver' in window){
+    var mio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var idx = Array.prototype.indexOf.call(mapItems, e.target);
+          setTimeout(function(){ e.target.classList.add('visible'); }, idx * 100);
+          mio.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.2});
+    mapItems.forEach(function(el){ mio.observe(el); });
+  } else {
+    mapItems.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  /* ===== Fears cards reveal (stagger via CSS delay) ===== */
+  var fearsGrid = document.querySelector('.fears-grid');
+  if(fearsGrid){
+    var fearCards = fearsGrid.querySelectorAll('.fear-card');
+    if('IntersectionObserver' in window){
+      var fio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            fearCards.forEach(function(c){ c.classList.add('visible'); });
+            fio.disconnect();
+          }
+        });
+      }, {threshold:0.15});
+      fio.observe(fearsGrid);
+    } else {
+      fearCards.forEach(function(c){ c.classList.add('visible'); });
+    }
+  }
+
+  /* ===== Docs cards reveal ===== */
+  var docsGrid = document.querySelector('.docs-grid');
+  if(docsGrid){
+    var docCards = docsGrid.querySelectorAll('.doc-card');
+    if('IntersectionObserver' in window){
+      var dio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            docCards.forEach(function(c,i){
+              setTimeout(function(){ c.classList.add('visible'); }, i * 100);
+            });
+            dio.disconnect();
+          }
+        });
+      },{threshold:0.15});
+      dio.observe(docsGrid);
+    } else {
+      docCards.forEach(function(c){ c.classList.add('visible'); });
+    }
+  }
+
+  /* ===== Transformation columns reveal ===== */
+  var transformGrid = document.querySelector('.transform-grid');
+  if(transformGrid){
+    if('IntersectionObserver' in window){
+      var tio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ transformGrid.classList.add('visible'); tio.disconnect(); }
+        });
+      }, {threshold:0.2});
+      tio.observe(transformGrid);
+    } else {
+      transformGrid.classList.add('visible');
+    }
+  }
+
+  /* ===== Sticky CTA (mobile) ===== */
+  window.addEventListener('scroll', function(){
+    var stickyCta = document.getElementById('stickyCta');
+    var finalSection = document.getElementById('final');
+    if(!stickyCta || !finalSection) return;
+    var scrolled = window.scrollY > 400;
+    var reachedForm = finalSection.getBoundingClientRect().top < window.innerHeight;
+    if(scrolled && !reachedForm){ stickyCta.classList.add('visible'); }
+    else { stickyCta.classList.remove('visible'); }
+  }, {passive:true});
+
+  /* ===== Before/After hint hide on first interaction ===== */
+  var baHint = document.getElementById('baHint');
+  if(baHint){
+    var hideHint = function(){ baHint.classList.add('hidden'); };
+    document.querySelectorAll('[data-slider]').forEach(function(sl){
+      sl.addEventListener('mousedown', hideHint, {once:true});
+      sl.addEventListener('touchstart', hideHint, {once:true, passive:true});
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
