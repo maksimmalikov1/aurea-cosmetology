@@ -1,0 +1,64 @@
+---
+import { REVIEWS } from '../data/reviews';
+
+// «Елена К.» → «ЕК»
+const initials = (name: string) =>
+  name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('');
+---
+
+<!-- Десктоп — 5 карточек в ряд. До 1024px — лента со свайпом и точками-индикатором. -->
+<section id="reviews" class="section bg-cream" aria-labelledby="reviews-title">
+  <div class="shell">
+    <h2 id="reviews-title" class="font-display text-center text-bronze text-[48px] md:text-[60px] lg:text-[length:clamp(52px,5.2vw,76px)]" data-split
+        style="line-height: 1;">
+      Отзывы <em>клиентов</em>
+    </h2>
+
+    <div class="reviews-track mt-8 lg:mt-10 flex lg:grid lg:grid-cols-5 gap-2 items-stretch" data-stagger="90" data-reviews>
+      {REVIEWS.map((r) => (
+        <figure class="review-card bg-bronze text-cream min-h-[300px] px-6 lg:px-4 xl:px-6 pt-8 pb-7 flex flex-col items-center text-center">
+          <div class="font-display font-bold text-[72px] leading-[0.9] h-9" aria-hidden="true">&ldquo;</div>
+          <blockquote class="mt-2 text-[17px] lg:text-[16px] xl:text-[18px] leading-[1.35] font-medium">
+            <p>{r.text}</p>
+          </blockquote>
+          <figcaption class="mt-auto pt-6 flex flex-col items-center gap-2">
+            <span class="h-12 w-12 rounded-full bg-cream/15 ring-1 ring-cream/50 flex items-center justify-center font-display text-[16px] tracking-wide" aria-hidden="true">
+              {initials(r.name)}
+            </span>
+            <span class="text-[13px] font-semibold">{r.name}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="mt-6 flex justify-center gap-2 lg:hidden" data-reviews-dots aria-hidden="true">
+      {REVIEWS.map((_, i) => <span class={`reviews-dot${i === 0 ? ' is-active' : ''}`}></span>)}
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector<HTMLElement>('[data-reviews]');
+  const dots = Array.from(document.querySelectorAll<HTMLElement>('[data-reviews-dots] > span'));
+  if (track && dots.length) {
+    const cards = Array.from(track.children) as HTMLElement[];
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const center = track.scrollLeft + track.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      cards.forEach((c, i) => {
+        const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - center);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      // у края ленты — крайняя карточка
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) best = cards.length - 1;
+      if (track.scrollLeft <= 4) best = 0;
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === best));
+    };
+    track.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+  }
+</script>

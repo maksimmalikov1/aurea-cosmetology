@@ -1,0 +1,41 @@
+---
+import PillCta from './PillCta.astro';
+
+// Сетка 4 колонки × 2 ряда фото, часть ячеек пустая — «шахматка» как в референсе.
+// Ряд 1 сетки — шапка (подпись + кнопка), фото начинаются со 2-го ряда.
+// До 1024px — 2 колонки: фото парами, третье во всю ширину, кнопка под сеткой.
+const tall = 'aspect-[21/25]';
+// object-position: держим главный элемент (лицо, губы) в кадре при разных обрезках
+const shots = [
+  { src: '/img/work-glow.webp',    alt: 'Естественное сияние кожи с веснушками', place: `lg:col-start-2 lg:row-start-2 ${tall}`, pos: '55% 30%' },
+  { src: '/img/work-serum-hands.webp', alt: 'Нанесение сыворотки косметологом', place: `lg:col-start-3 lg:row-start-2 ${tall}`, pos: '60% 40%' },
+  { src: '/img/work-lips.webp',    alt: 'Губы после контурной пластики',         place: 'lg:col-start-1 lg:row-start-3 col-span-2 lg:col-span-1 aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/25]', pos: 'center 45%' },
+  { src: '/img/work-gaze.webp',    alt: 'Естественный взгляд, ухоженная кожа',   place: `lg:col-start-2 lg:row-start-3 ${tall}`, pos: 'center 30%' },
+  { src: '/img/work-profile.webp', alt: 'Чистый профиль, подтянутая линия шеи',  place: `lg:col-start-4 lg:row-start-3 ${tall}`, pos: '40% 35%' },
+];
+---
+
+<section id="works" class="section bg-cream" aria-labelledby="works-title">
+  <div class="shell">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2" data-stagger="80">
+      <h2 id="works-title" class="col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:row-span-2 self-start font-display text-bronze text-[52px] md:text-[64px] lg:text-[length:clamp(56px,5.6vw,82px)]" data-split
+          style="line-height: 0.98;">
+        Наши<br /><em>работы</em>
+      </h2>
+
+      <p class="col-span-2 mt-3 mb-6 text-left text-ink/85 text-[15px] md:text-[17px] leading-snug lg:col-span-1 xl:col-span-2 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:self-center lg:text-right lg:text-[18px]">
+        Моменты из&nbsp;нашей студии&nbsp;— мягко, честно и&nbsp;без фильтров
+      </p>
+
+      <div class="order-last col-span-2 mt-6 justify-self-center lg:order-none lg:col-span-1 lg:mt-0 lg:col-start-4 lg:row-start-1 lg:self-center lg:justify-self-end lg:mb-6">
+        <PillCta href="/booking" />
+      </div>
+
+      {shots.map((s) => (
+        <div class={`media zoom-img bg-sand ${s.place}`} data-reveal="image">
+          <img src={s.src} alt={s.alt} loading="lazy" decoding="async" style={`object-position: ${s.pos}`} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

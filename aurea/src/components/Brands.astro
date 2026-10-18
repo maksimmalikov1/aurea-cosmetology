@@ -1,0 +1,43 @@
+---
+import { BRANDS } from '../data/brands';
+// дублируем набор, чтобы лента шла бесшовно (анимация сдвигает на -50%)
+const half = [...BRANDS, ...BRANDS];
+const loop = [...half, ...half];
+---
+
+<section class="section bg-cream overflow-hidden">
+  <div class="shell">
+    <!-- Текст (крупный, с курсивным акцентом — как в референсе) -->
+    <div class="max-w-[880px] mb-10 text-center mx-auto md:mb-14 lg:mb-16 lg:text-left lg:mx-0">
+      <h2 class="font-display text-[23px] md:text-[34px] lg:text-[length:clamp(30px,3.4vw,52px)] max-lg:[text-wrap:balance]" data-split style="line-height: 1.22;">
+        Мы работаем с&nbsp;продуктами <em class="italic">самых авторитетных
+        косметических </em><span class="whitespace-nowrap"><em class="italic">брендов</em>,</span> отвечающих всем стандартам индустрии
+      </h2>
+    </div>
+  </div>
+
+  <!-- Бесконечная лента логотипов (справа налево, с затуханием краёв) -->
+  <div class="brand-slider" id="brand-slider">
+    <!-- круги-линии без заливки, слегка пересекаются (как в референсе) -->
+    <div class="brand-track items-center py-2">
+      {loop.map((b) => (
+        <div class="aspect-square w-[150px] -mr-[12px] p-7 md:w-[190px] md:-mr-[16px] md:p-9 lg:w-[220px] lg:-mr-[18px] lg:p-11 shrink-0 rounded-full border border-ink/35 flex items-center justify-center">
+          <img src={b.logo} alt={b.name} class="max-h-[46px] max-w-[96px] md:max-h-[60px] md:max-w-[120px] lg:max-h-[70px] lg:max-w-[140px] w-auto object-contain" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var slider = document.getElementById('brand-slider');
+    if (!slider) return;
+    var track = slider.querySelector('.brand-track');
+    if (!track || !track.getAnimations) return;
+    function anim() { var a = track.getAnimations(); return a && a[0]; }
+    // плавное замедление на наведение (не полная остановка)
+    slider.addEventListener('mouseenter', function () { var a = anim(); if (a && a.updatePlaybackRate) a.updatePlaybackRate(0.18); });
+    slider.addEventListener('mouseleave', function () { var a = anim(); if (a && a.updatePlaybackRate) a.updatePlaybackRate(1); });
+  })();
+</script>

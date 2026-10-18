@@ -1,0 +1,132 @@
+---
+import { SITE } from '../data/site';
+import PillCta from './PillCta.astro';
+
+// Раскладка как в референсе LUMI «Ready to Glow?», без фото-ленты; вместо формы — кнопка записи.
+// Колонки нижнего ряда: запись · адрес · навигация · иконки связи.
+const contacts = [
+  {
+    href: SITE.socials.telegram, label: 'Telegram', external: true,
+    icon: '<path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/>',
+  },
+  { href: SITE.socials.vk, label: 'ВКонтакте', external: true, text: 'VK' },
+  {
+    href: SITE.phoneHref, label: `Позвонить: ${SITE.phone}`,
+    icon: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  },
+  {
+    href: `mailto:${SITE.email}`, label: `Написать: ${SITE.email}`,
+    icon: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+  },
+];
+---
+
+<footer class="site-footer bg-bronze text-cream">
+  <div class="mx-auto w-full max-w-[1920px] pt-14 lg:pt-[clamp(56px,5vw,96px)] pb-8 lg:pb-10 px-5 md:px-10 lg:px-[clamp(40px,7vw,140px)]">
+
+    <!-- Заголовок. За ним — мягкое кремовое свечение, как блик на бронзе -->
+    <div class="relative">
+      <span class="footer-glow" aria-hidden="true"></span>
+      <h2 class="relative font-display text-cream text-[54px] md:text-[72px] lg:text-[length:clamp(64px,5.2vw,100px)]" data-split style="line-height: 1;">
+        Готовы<br /><em>засиять?</em>
+      </h2>
+      <p class="relative mt-4 text-cream/90 text-[16px] lg:text-[length:clamp(16px,1.15vw,21px)]" data-reveal style="--reveal-delay:300ms;">
+        Ваш путь к&nbsp;красоте начинается здесь
+      </p>
+    </div>
+
+    <!-- Запись · адрес · навигация · связь -->
+    <div class="mt-10 lg:mt-[clamp(44px,4vw,72px)] grid items-start gap-x-8 gap-y-10 grid-cols-1 md:grid-cols-2 lg:gap-8 lg:grid-cols-[minmax(0,52fr)_minmax(0,25fr)_minmax(0,16fr)_auto]" data-reveal="fade">
+      <div class="md:col-span-2 lg:col-span-1">
+        <p class="max-w-[430px] leading-[1.35] text-[18px] lg:text-[length:clamp(17px,1.2vw,22px)]">
+          Запишитесь на&nbsp;визит и&nbsp;позвольте вашей естественной красоте сиять
+        </p>
+        <PillCta href="/booking" tone="cream" class="mt-8" />
+      </div>
+
+      <div class="footer-text">
+        <h3 class="font-sans text-cream uppercase tracking-[0.04em]">Адрес</h3>
+        <address class="not-italic">
+          {SITE.address}<br />
+          {SITE.city}<br />
+          <a href={`mailto:${SITE.email}`} class="footer-link">{SITE.email}</a><br />
+          <a href={SITE.phoneHref} class="footer-link">{SITE.phone}</a>
+        </address>
+        <p class="mt-3 text-cream/80 text-[14px]">{SITE.hours}</p>
+      </div>
+
+      <nav class="footer-text" aria-label="Навигация по сайту">
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-1.5 md:block">
+          {SITE.nav.map((n) => <li><a href={n.href} class="footer-link">{n.label}</a></li>)}
+          <li><a href="/booking" class="footer-link">Запись</a></li>
+        </ul>
+      </nav>
+
+      <ul class="flex gap-3 md:col-span-2 lg:col-span-1 lg:self-center lg:grid lg:grid-cols-2" aria-label="Связаться с нами">
+        {contacts.map((c) => (
+          <li>
+            <a href={c.href} aria-label={c.label} data-tip={c.label}
+               {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+               class="footer-icon">
+              {c.text
+                ? <span class="text-[12px] font-extrabold tracking-tight" aria-hidden="true">{c.text}</span>
+                : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={c.icon} />}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Письма об уходе: поле с кнопкой-стрелкой внутри -->
+    <div class="footer-sub">
+      <div class="footer-sub__text">
+        <h3 class="font-display text-cream text-[22px] md:text-[26px] leading-[1.15]">
+          Письма об&nbsp;<em>уходе</em>
+        </h3>
+        <p class="mt-2 text-cream/80 text-[14px] leading-[1.5] max-w-[380px]">
+          Раз в&nbsp;месяц&nbsp;— о&nbsp;сезонном уходе и&nbsp;новых протоколах. Без спама.
+        </p>
+      </div>
+
+      <form class="footer-sub__form" id="footer-sub" novalidate>
+        <label class="sr-only" for="footer-sub-email">Ваш e-mail</label>
+        <input id="footer-sub-email" name="email" type="email" inputmode="email" autocomplete="email"
+               placeholder="Ваш e-mail" required class="footer-sub__input" />
+        <button type="submit" class="footer-sub__btn" aria-label="Подписаться на письма">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="footer-sub__note" data-sub-note role="status"></p>
+      </form>
+    </div>
+
+    <!-- Низ -->
+    <div class="mt-12 lg:mt-[clamp(48px,4.5vw,80px)] pt-6 lg:pt-0 border-t border-cream/20 lg:border-0 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between md:gap-8 text-[13px] lg:text-[14px] text-cream/85">
+      <div class="flex flex-col items-start gap-y-2.5 md:flex-row md:items-center md:gap-x-6">
+        <a href="/privacy" class="footer-link">Политика конфиденциальности</a>
+        <a href="/terms" class="footer-link">Обработка данных</a>
+      </div>
+      <div>© {new Date().getFullYear()} AUREA studio · {SITE.city}</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // TODO: подписка никуда не отправляется — подключить вместе с формой записи
+  // (см. submitBooking в src/pages/booking.astro). Пока показываем честное сообщение.
+  const form = document.getElementById('footer-sub') as HTMLFormElement | null;
+  const note = form?.querySelector<HTMLElement>('[data-sub-note]');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!note) return;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    // простая проверка, чтобы не отправлять пустое и явно неверное
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) {
+      note.textContent = 'Проверьте адрес — кажется, в нём опечатка';
+      note.dataset.state = 'error';
+      return;
+    }
+    note.textContent = 'Пока подписка не подключена — напишите нам в Telegram';
+    note.dataset.state = 'ok';
+  });
+</script>

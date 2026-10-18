@@ -1,0 +1,58 @@
+---
+// «Наша цель» — по референсу LUMI: ритм акцентов курсив / жирный / курсив / жирный
+// и лиственная веточка-лайнарт на бежевом «камешке» между словами последней строки.
+---
+
+<section class="section">
+  <div class="shell text-center">
+    <h2 class="font-display font-normal text-ink mx-auto max-w-[900px] text-[25px] md:text-[32px] lg:text-[length:clamp(28px,3.1vw,46px)] max-md:[text-wrap:balance]" data-split
+        style="line-height: 1.3;">
+      Наша <i class="italic">цель</i>&nbsp;— <b class="font-semibold">подарить</b> целостный опыт,<br class="max-md:hidden" />
+      после которого вы <i class="italic">выглядите</i><br class="max-md:hidden" />
+      и&nbsp;чувствуете себя
+      <span class="goal-sprig" aria-hidden="true" data-split-unit>
+        <svg viewBox="0 -2 62 106" fill="none">
+          <!-- бежевый «камешек» за веточкой -->
+          <path d="M36 4 C50 2 58 20 56 44 C54 68 46 82 37 80 C28 78 26 58 27 38 C28 16 28 6 36 4 Z" fill="#E4DCD2" />
+          <g stroke="#2C2C2C" stroke-opacity=".85" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <!-- стебель -->
+            <path d="M14 102 C18 78 26 50 44 8" />
+            <!-- листья -->
+            <path d="M17 86 Q13.6 76.7 4 74 Q7.5 83.3 17 86 Z" />
+            <path d="M21 70 Q30.6 70 36 62 Q26.4 62 21 70 Z" />
+            <path d="M26 54 Q21.9 44.6 12 42 Q16.1 51.4 26 54 Z" />
+            <path d="M31 40 Q40.2 41.2 46 34 Q36.8 32.8 31 40 Z" />
+            <path d="M36 27 Q32.7 18.6 24 16 Q27.3 24.5 36 27 Z" />
+            <path d="M41 15 Q48.4 15.8 53 10 Q45.6 9.2 41 15 Z" />
+            <path d="M44 9 Q47.9 5.2 46 0 Q42.1 3.9 44 9 Z" />
+            <!-- прожилки -->
+            <path d="M17 86 L6.6 76.4 M21 70 L33 63.6 M26 54 L14.8 44.4 M31 40 L43 35.2 M36 27 L26.4 18.2 M41 15 L50.6 11" stroke-width=".6" />
+          </g>
+        </svg>
+      </span>
+      <b class="font-semibold">лучше</b>
+    </h2>
+  </div>
+</section>
+
+<style>
+  /* Веточка не раздувает межстрочный интервал: блок высотой в строку,
+     сама картинка выходит за его пределы — как в референсе, ниже строки. */
+  .goal-sprig {
+    position: relative;
+    display: inline-block;
+    width: 1.75em;
+    height: 1em;
+    margin: 0 .3em;
+    vertical-align: middle;
+  }
+  .goal-sprig svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1.75em;
+    height: auto;
+    transform: translate(-50%, -38%);
+    overflow: visible;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+// Пункт навигации с эффектом variable-font hover (порт компонента 21st.dev
+// VariableFontHover на Astro/CSS): при наведении буквы «наливаются» жирностью
+// wght 400 → 700 волной от центра слова. Задержки считаем на рендере, сам
+// ховер — на чистом CSS, без JS. Требует вариативный Manrope (ось wght).
+export interface Props {
+  href: string;
+  label: string;
+  class?: string;
+}
+const { href, label, class: cls = '' } = Astro.props;
+
+const chars = Array.from(label);
+const center = (chars.length - 1) / 2;
+const STEP = 0.03; // c на шаг удаления от центра
+---
+
+<a href={href} class={`vfh transition-colors ${cls}`} aria-label={label}>
+  {chars.map((ch, i) => (
+    <span class="vfh__ch" style={`transition-delay:${(Math.abs(i - center) * STEP).toFixed(3)}s`} aria-hidden="true">
+      {ch === ' ' ? ' ' : ch}
+    </span>
+  ))}
+</a>

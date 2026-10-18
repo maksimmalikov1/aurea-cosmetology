@@ -1,0 +1,24 @@
+---
+// Кнопка «Flow» (порт компонента с 21st.dev на чистый HTML/CSS).
+// variant: ink    → для светлого фона (тёмная обводка, заливка тёмным)
+//          dark / outline → для тёмного фона (светлая обводка, заливка кремовым)
+export interface Props {
+  href: string;
+  label?: string;
+  variant?: 'dark' | 'ink' | 'outline';
+  class?: string;
+}
+const { href, label = 'Записаться на визит', variant = 'ink', class: cls = '' } = Astro.props;
+const tone = variant === 'ink' ? 'on-light' : 'on-dark';
+---
+
+<a href={href} class={`flow-btn ${tone} ${cls}`}>
+  <svg class="flow-arrow flow-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6"/>
+  </svg>
+  <span class="flow-label">{label}</span>
+  <span class="flow-circle" aria-hidden="true"></span>
+  <svg class="flow-arrow flow-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6"/>
+  </svg>
+</a>

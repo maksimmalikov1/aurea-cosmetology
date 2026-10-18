@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+
+<Base title="Обработка персональных данных · AUREA" variant="light">
+  <article class="shell pt-8 pb-16 lg:pt-16 lg:pb-24 max-w-[760px]">
+    <a href="/" class="text-[13px] uppercase tracking-wider2 text-ink/70 hover:text-ink">← На главную</a>
+    <h1 class="font-display mt-5 lg:mt-6 text-[length:clamp(28px,9vw,44px)] md:text-[44px] lg:text-[length:clamp(44px,4.6vw,60px)]" data-split style="line-height: 1.05;">
+      Согласие на <em>обработку</em> персональных данных
+    </h1>
+    <p class="mt-4 text-ink/70 text-[13px] uppercase tracking-wider2">Редакция от 01.01.2026</p>
+
+    <div class="mt-10 space-y-8 text-ink/80 text-[16px] leading-[1.75]">
+      <p>
+        Отправляя заявку через форму онлайн-записи на сайте aurea-studio.ru,
+        вы подтверждаете своё согласие на обработку персональных данных на
+        условиях, изложенных ниже, в соответствии с Федеральным законом
+        от 27.07.2006 № 152-ФЗ «О персональных данных».
+      </p>
+
+      <section>
+        <h2 class="font-display text-[20px] lg:text-[22px] text-ink mb-3">Оператор</h2>
+        <p>
+          Студия эстетической косметологии AUREA, {SITE.addressFull}.
+          Контакт: <a href={`mailto:${SITE.email}`} class="text-bronze underline underline-offset-2">{SITE.email}</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-[20px] lg:text-[22px] text-ink mb-3">Перечень данных</h2>
+        <ul class="mt-3 space-y-1 pl-5 list-disc marker:text-bronze">
+          <li>фамилия, имя</li>
+          <li>контактный телефон</li>
+          <li>адрес электронной почты</li>
+          <li>комментарий к записи (при наличии)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-[20px] lg:text-[22px] text-ink mb-3">Действия с данными</h2>
+        <p>
+          Сбор, запись, систематизация, накопление, хранение, уточнение
+          (обновление, изменение), извлечение, использование, передача
+          (предоставление доступа), обезличивание, блокирование, удаление,
+          уничтожение.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-[20px] lg:text-[22px] text-ink mb-3">Цели</h2>
+        <p>
+          Связь с клиентом для подтверждения записи, напоминания о визите,
+          уточнения деталей процедуры и повышения качества обслуживания.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-[20px] lg:text-[22px] text-ink mb-3">Срок</h2>
+        <p>
+          Согласие действует бессрочно и может быть отозвано письменным
+          заявлением, направленным на e-mail Клиники.
+          В течение 10 рабочих дней данные удаляются из всех носителей.
+        </p>
+      </section>
+    </div>
+  </article>
+</Base>

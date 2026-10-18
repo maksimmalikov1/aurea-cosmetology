@@ -1,0 +1,76 @@
+---
+import { RITUALS } from '../data/rituals';
+
+// Раскладка как в референсе LUMI «Aftercare rituals»: крайние карточки высокие,
+// средние ниже, низ у всех на одной линии; над средними — подпись.
+// До 1280px — подпись сверху, карточки одна под другой (планшет и ноутбук — по две).
+const cards = [
+  { img: '/img/ritual-1.webp',   place: 'xl:col-start-1 xl:row-start-1 xl:row-span-2', aspect: 'aspect-[4/5] lg:aspect-square xl:aspect-[9/13]' },
+  { img: '/img/ritual-serum.webp', place: 'xl:col-start-2 xl:row-start-2',               aspect: 'aspect-[4/5] lg:aspect-square xl:aspect-[17/20]' },
+  { img: '/img/ritual-3.webp',   place: 'xl:col-start-3 xl:row-start-2',               aspect: 'aspect-[4/5] lg:aspect-square xl:aspect-[17/20]' },
+  { img: '/img/ritual-4.webp',   place: 'xl:col-start-4 xl:row-start-1 xl:row-span-2', aspect: 'aspect-[4/5] lg:aspect-square xl:aspect-[9/13]' },
+];
+---
+
+<section id="rituals" class="section bg-cream" aria-labelledby="rituals-title">
+  <div class="shell">
+    <h2 id="rituals-title" class="font-display text-center" data-split>
+      <span class="block text-bronze text-[46px] md:text-[64px] lg:text-[length:clamp(56px,5.6vw,82px)]" style="line-height: 1;">
+        Ритуалы <em>ухода</em>
+      </span>
+      <span class="block mt-3 lg:mt-2 mx-auto max-w-[1000px] text-ink text-[23px] md:text-[34px] lg:text-[length:clamp(38px,3.7vw,54px)] max-lg:[text-wrap:balance]" style="line-height: 1.15;">
+        чтобы кожа сияла&nbsp;— следуйте нашему простому ритуалу заботы о&nbsp;себе
+      </span>
+    </h2>
+
+    <div class="mt-5 lg:mt-9 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4 xl:gap-2.5" data-stagger="100">
+      {RITUALS.map((r, i) => {
+        const c = cards[i];
+        return (
+          <>
+            {i === 1 && (
+              <p class="order-first mb-4 text-center md:col-span-2 xl:order-none xl:mb-0 xl:text-left xl:col-start-2 xl:col-span-2 xl:row-start-1 self-start justify-self-center max-w-[560px] text-ink/85 text-[15px] md:text-[18px] lg:text-[20px] leading-[1.45] lg:leading-[1.35] max-xl:[text-wrap:balance]">
+                Каждый шаг продлевает результат процедур и&nbsp;делает ваш уход осознаннее
+              </p>
+            )}
+            <article class={`flip xl:self-end ${c.place}`}>
+              <div class={`flip-inner ${c.aspect}`}>
+                <!-- лицевая сторона -->
+                <button type="button" class="flip-toggle flip-face flip-front block w-full text-left"
+                        aria-label={`${r.title} — показать описание шага`}>
+                  <div class="media h-full w-full"><img src={c.img} alt="" loading="lazy" decoding="async" /></div>
+                  <span class="absolute top-3 left-3 bg-cream rounded-full px-4 py-2 text-[13px] text-ink">
+                    {r.title}
+                  </span>
+                  <span class="absolute bottom-3 right-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-cream text-ink" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M6 6l8 8M14 14H7M14 14V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </button>
+
+                <!-- оборотная сторона -->
+                <button type="button" class="flip-toggle flip-face flip-back block w-full text-left bg-sand p-7 flex flex-col"
+                        aria-label={`${r.title} — вернуть фото`}>
+                  <div class="eyebrow mb-3">Шаг {String(i + 1).padStart(2, '0')}</div>
+                  <h3 class="font-display italic text-[24px] text-ink mb-4">{r.title}</h3>
+                  <p class="text-ink/75 text-[15px] leading-[1.6] flex-1">{r.back}</p>
+                  <span class="mt-4 inline-flex items-center gap-2 text-[12px] uppercase tracking-wider2 text-bronze-dark">
+                    <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 4a6 6 0 1 0 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 1v3l2-1.5z" fill="currentColor"/></svg>
+                    Назад
+                  </span>
+                </button>
+              </div>
+            </article>
+          </>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.flip-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btn.closest('.flip')?.classList.toggle('is-flipped');
+    });
+  });
+</script>

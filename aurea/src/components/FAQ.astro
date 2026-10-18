@@ -1,0 +1,84 @@
+---
+// Пять вопросов, которые чаще всего задают перед визитом к косметологу
+const faqs = [
+  {
+    q: 'Больно ли это?',
+    a: [
+      'Перед инъекциями наносим анестезирующий крем, а многие филлеры уже содержат лидокаин — обычно ощущается лишь лёгкое покалывание.',
+      'Аппаратные процедуры чувствуются как тепло или вибрация; мощность подстраиваем под ваши ощущения прямо во время сеанса.',
+    ],
+  },
+  {
+    q: 'Когда будет виден результат и сколько он продержится?',
+    a: [
+      'Филлеры дают эффект сразу, финальный — через 2 недели; ботулинотерапия проявляется за 3–14 дней.',
+      'В среднем результат держится от 4 до 12 месяцев — зависит от препарата, зоны и особенностей организма.',
+    ],
+  },
+  {
+    q: 'Сколько длится восстановление — можно сразу на работу?',
+    a: [
+      'После ухода, пилингов и большинства аппаратных процедур — да, в тот же день.',
+      'После инъекций возможны лёгкие отёки и точечные синяки на 2–5 дней, поэтому перед важным событием планируйте визит за 2 недели.',
+    ],
+  },
+  {
+    q: 'Есть ли противопоказания?',
+    a: [
+      'Беременность и грудное вскармливание, острые воспаления или герпес в зоне процедуры, простуда и температура.',
+      'Некоторые хронические заболевания и приём препаратов, разжижающих кровь, — полный список врач уточнит на консультации.',
+    ],
+  },
+  {
+    q: 'Что, если результат мне не понравится?',
+    a: [
+      'Через 2 недели — бесплатный контрольный осмотр: врач оценит результат и при необходимости проведёт коррекцию.',
+      'Филлеры на основе гиалуроновой кислоты при необходимости можно растворить — результат обратим.',
+    ],
+  },
+];
+---
+
+<section id="faq" class="section" aria-labelledby="faq-title">
+  <div class="mx-auto w-full max-w-[1600px] px-5 md:px-10">
+    <h2 id="faq-title" class="font-display text-center text-bronze text-[44px] md:text-[60px] lg:text-[length:clamp(60px,5.5vw,106px)]" data-split
+        style="line-height: 1;">
+      Частые <em>вопросы</em>
+    </h2>
+
+    <div class="mt-10 lg:mt-16 border-t border-ink/15" data-stagger="80">
+      {faqs.map((f, i) => {
+        const id = `faq-${i + 1}`;
+        const open = i === 0;
+        return (
+          <div class={`faq-item draw-line${open ? ' is-open' : ''}`}>
+            <h3>
+              <button type="button" class="faq-q" id={`${id}-q`}
+                      aria-expanded={open ? 'true' : 'false'} aria-controls={`${id}-a`}>
+                <span class="faq-num">{String(i + 1).padStart(2, '0')}.</span>
+                <span class="faq-text">{f.q}</span>
+                <span class="faq-icon" aria-hidden="true"><span class="faq-h"></span><span class="faq-v"></span></span>
+              </button>
+            </h3>
+            <div class="faq-a" id={`${id}-a`} role="region" aria-labelledby={`${id}-q`}>
+              <div>
+                <ul class="faq-list">
+                  {f.a.map((line) => <li>{line}</li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-item .faq-q').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.closest('.faq-item')?.classList.toggle('is-open') ?? false;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>

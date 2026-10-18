@@ -1,0 +1,93 @@
+---
+import { SERVICES, CATEGORY_META, formatPrice, formatDuration } from '../data/services';
+import type { ServiceCategoryId } from '../data/services';
+
+const cards: { cat: ServiceCategoryId; label: string; img: string; alt: string }[] = [
+  { cat: 'hardware',  label: 'Аппаратная косметология',   img: '/img/cat-hardware.webp',  alt: 'Аппаратный уход за лицом' },
+  { cat: 'facial',    label: 'Уход за кожей',              img: '/img/svc-facial.webp',    alt: 'Уход за кожей лица' },
+  { cat: 'injection', label: 'Инъекционная косметология', img: '/img/cat-injection.webp', alt: 'Инъекционная косметология' },
+  { cat: 'spa',       label: 'Массаж и SPA',              img: '/img/cat-spa.webp',       alt: 'Массаж лица и SPA' },
+];
+
+const cardData = cards.map(c => {
+  const meta = CATEGORY_META[c.cat];
+  const services = SERVICES.filter(s => s.category === c.cat).slice(0, 4);
+  return { ...c, meta, services };
+});
+---
+
+<section id="services" class="section bg-cream">
+  <div class="shell">
+    <div class="mb-8 lg:mb-12 lg:grid lg:grid-cols-12 lg:gap-10 lg:items-center">
+      <div class="lg:col-span-7">
+        <h2 class="font-display text-bronze" data-split style="font-size: clamp(44px, 5.4vw, 84px); line-height: 1;">
+          Наши <em class="italic">услуги</em>
+        </h2>
+      </div>
+      <div class="mt-4 lg:mt-0 lg:col-span-5" data-reveal style="--reveal-delay:150ms">
+        <p class="text-ink/70 text-[14px] leading-[1.55] max-w-[320px]">
+          Каждая процедура создана, чтобы подчеркнуть вашу естественную красоту.
+          Нажмите на&nbsp;карточку&nbsp;— узнаете больше.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 xl:grid-cols-4" data-stagger="100">
+      {cardData.map((c) => (
+        <div class="svc-flip" data-cat={c.cat}>
+          <div class="svc-flip-inner aspect-[4/5] lg:aspect-square xl:aspect-[3/4]">
+
+            <!-- Лицевая: фото + тег + стрелка -->
+            <div class="svc-flip-face svc-flip-front svc-flip-toggle">
+              <div class="media h-full w-full">
+                <img src={c.img} alt={c.alt} loading="lazy" />
+              </div>
+              <span class="absolute top-5 left-5 bg-cream rounded-full px-5 py-2.5 text-[13px] text-ink shadow-sm z-10">
+                {c.label}
+              </span>
+              <span class="svc-arrow absolute bottom-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full bg-cream text-ink shadow-sm z-10">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M6 6l8 8M14 14H7M14 14V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+
+            <!-- Оборотная: прайс-лист -->
+            <div class="svc-flip-face svc-flip-back svc-flip-toggle">
+              <div class="svc-back h-full w-full bg-sand p-6 flex flex-col">
+                <h3 class="svc-back__tag font-display italic text-bronze text-[20px] leading-[1.3]">{c.meta.tagline}</h3>
+                <p class="mt-2 text-ink/70 text-[13px] leading-[1.5]">{c.meta.desc}</p>
+
+                <div class="svc-back__list mt-4 flex-1 flex flex-col justify-center space-y-0">
+                  {c.services.map((s) => (
+                    <div class="svc-back__row flex items-baseline justify-between py-3 border-b border-ink/10 last:border-b-0">
+                      <span class="min-w-0 truncate text-ink text-[14px] font-medium leading-tight pr-2" title={s.title}>{s.title}</span>
+                      <span class="text-ink/70 text-[13px] italic whitespace-nowrap shrink-0">
+                        {s.priceFrom ? 'от ' : ''}{formatPrice(s.price)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <a href={`/services/${c.cat}`}
+                   class="svc-details-link mt-4 inline-flex items-center gap-2 text-[13px] text-ink underline underline-offset-4 decoration-ink/30 hover:decoration-ink transition-colors"
+                   onclick="event.stopPropagation()">
+                  Подробнее
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll('.svc-flip-toggle').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (e.target.closest('.svc-details-link')) return;
+      el.closest('.svc-flip').classList.toggle('is-flipped');
+    });
+  });
+</script>

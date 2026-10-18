@@ -1,0 +1,176 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  variant?: 'default' | 'light' | 'bare';
+}
+
+const {
+  title = `${SITE.name} · ${SITE.tagline}`,
+  description = `${SITE.name} — студия эстетической косметологии в Санкт-Петербурге. Инъекционная и аппаратная косметология, уход, SPA. Запись онлайн.`,
+  variant = 'default',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#FAF8F5" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Анимации при прокрутке: появление блоков, заголовки по словам, шторка фото, параллакс.
+       Стили — раздел SCROLL REVEAL в global.css. При reduced-motion ничего не включается. -->
+  <script is:inline>
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      document.documentElement.classList.add('reveal');
+
+      var SELECTOR = '[data-reveal], [data-stagger] > *, [data-split]';
+      var targets = [];
+      var parallax = [];
+      // До 1024px всё в одну колонку: «лесенка» — только среди появившихся вместе, без параллакса
+      var compact = window.matchMedia('(max-width: 1023px)').matches;
+
+      function revealAll() {
+        document.querySelectorAll(SELECTOR).forEach(function (el) {
+          el.classList.add('is-visible', 'is-split');
+        });
+      }
+
+      // Разбивает текст заголовка на слова <span class="sw" style="--w:N">, сохраняя <em>, <br> и т.п.
+      // Неразрывный пробел (&nbsp;) слова не делит. [data-split-unit] — анимируется целиком как «слово».
+      function splitWords(root) {
+        var n = 0;
+        (function walk(node) {
+          [].slice.call(node.childNodes).forEach(function (child) {
+            if (child.nodeType === 3) {
+              var parts = child.nodeValue.split(/([ \t\n\r]+)/);
+              var frag = document.createDocumentFragment();
+              parts.forEach(function (p) {
+                if (!p) return;
+                if (/^[ \t\n\r]+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+                var s = document.createElement('span');
+                s.className = 'sw';
+                s.style.setProperty('--w', n++);
+                s.textContent = p;
+                frag.appendChild(s);
+              });
+              child.parentNode.replaceChild(frag, child);
+            } else if (child.nodeType === 1) {
+              if (child.hasAttribute('data-split-unit')) {
+                child.classList.add('sw');
+                child.style.setProperty('--w', n++);
+              } else if (child.tagName !== 'BR') {
+                walk(child);
+              }
+            }
+          });
+        })(root);
+        root.classList.add('is-split');
+      }
+
+      function reveal() {
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        var shown = [];
+        for (var k = targets.length - 1; k >= 0; k--) {
+          var r = targets[k].getBoundingClientRect();
+          if (r.top < vh * 0.9 && r.bottom > -40) {
+            shown.push(targets[k]);
+            targets.splice(k, 1);
+          }
+        }
+        shown.reverse();
+        if (compact) {
+          // карточка, которая въехала в экран одна, не ждёт своих «соседей по ряду»
+          var groups = [], counts = [];
+          shown.forEach(function (el) {
+            var g = el.parentElement;
+            if (!g || !g.hasAttribute('data-stagger')) return;
+            var i = groups.indexOf(g);
+            if (i < 0) { groups.push(g); counts.push(0); i = groups.length - 1; }
+            el.style.setProperty('--reveal-delay', (Math.min(counts[i], 3) * 70) + 'ms');
+            counts[i]++;
+          });
+        }
+        shown.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      // Фото едет медленнее страницы: смещение ±(доля высоты рамки) от центра экрана
+      function updateParallax() {
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        for (var k = 0; k < parallax.length; k++) {
+          var img = parallax[k];
+          var box = img.parentElement.getBoundingClientRect();
+          if (box.bottom < -200 || box.top > vh + 200) continue;
+          var p = (box.top + box.height / 2 - vh / 2) / (vh / 2 + box.height / 2);
+          p = Math.max(-1, Math.min(1, p));
+          var range = box.height * (parseFloat(img.getAttribute('data-parallax')) || 0.08);
+          img.style.translate = '0 ' + (-p * range).toFixed(1) + 'px';
+        }
+      }
+
+      var ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () { reveal(); updateParallax(); ticking = false; });
+      }
+
+      function setup() {
+        try {
+          // раскладываем задержки для staggered-групп (на десктопе — по порядку в ряду)
+          if (!compact) document.querySelectorAll('[data-stagger]').forEach(function (group) {
+            var step = parseInt(group.getAttribute('data-stagger'), 10) || 90;
+            var i = 0;
+            [].forEach.call(group.children, function (child) {
+              child.style.setProperty('--reveal-delay', (i * step) + 'ms');
+              i++;
+            });
+          });
+          document.querySelectorAll('[data-split]').forEach(splitWords);
+          parallax = compact ? [] : [].slice.call(document.querySelectorAll('[data-parallax]'));
+          targets = [].slice.call(document.querySelectorAll(SELECTOR));
+
+          // фиксируем стартовые стили новых слов, иначе первый экран появится без анимации
+          void document.body.getBoundingClientRect();
+          reveal(); // показать то, что уже в зоне видимости
+          updateParallax();
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', onScroll, { passive: true });
+          window.addEventListener('load', function () { reveal(); updateParallax(); });
+        } catch (e) {
+          revealAll(); // при любой ошибке — ничего не прячем
+        }
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+      else setup();
+    })();
+  </script>
+</head>
+<body>
+  {variant === 'default' && <Header theme="onDark" />}
+  {variant === 'light' && <Header theme="onLight" />}
+  <main>
+    <slot />
+  </main>
+  {variant !== 'bare' && <Footer />}
+</body>
+</html>

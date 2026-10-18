@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+
+<Base title="Страница не найдена · AUREA" variant="bare">
+  <section class="relative min-h-screen max-lg:min-h-[100svh] bg-cream flex flex-col items-center justify-center text-center px-5 py-24 md:px-10 overflow-hidden">
+    <!-- декоративный фон -->
+    <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div class="font-display italic text-sand/60 select-none leading-none" style="font-size: clamp(280px, 48vw, 720px);">AUREA</div>
+    </div>
+
+    <a href="/" class="absolute top-6 left-5 md:top-8 md:left-10 font-display text-[20px] md:text-[24px] tracking-[0.22em] text-ink z-10">AUREA</a>
+
+    <div class="relative z-10">
+      <div class="font-display text-ink leading-none" style="font-size: clamp(130px, 22vw, 280px);">
+        4<em class="italic">0</em>4
+      </div>
+      <h1 class="font-display mt-2" style="font-size: clamp(30px, 3.4vw, 46px); line-height: 1.1;">
+        Страница <em>не найдена</em>
+      </h1>
+      <p class="mt-5 text-ink/70 text-[15px] md:text-[16px] max-w-[460px] mx-auto leading-[1.7]">
+        Возможно, страница была перемещена или&nbsp;больше не&nbsp;существует.
+        Вернитесь на&nbsp;главную — там всё на&nbsp;месте.
+      </p>
+
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <a href="/" class="btn-primary max-sm:w-full max-sm:max-w-[280px]">
+          На главную
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/booking" class="btn-ghost max-sm:w-full max-sm:max-w-[280px]">Записаться</a>
+      </div>
+
+      <div class="mt-10 text-ink/70 text-[13px]">
+        или позвоните: <a href={SITE.phoneHref} class="text-bronze hover:underline underline-offset-4">{SITE.phone}</a>
+      </div>
+    </div>
+  </section>
+</Base>

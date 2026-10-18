@@ -1,0 +1,852 @@
+---
+import Base from '../layouts/Base.astro';
+import { SERVICES_BY_CATEGORY, SERVICES, formatAmount, formatDuration } from '../data/services';
+import { SITE } from '../data/site';
+
+// данные услуг для клиентского JS
+const servicesForClient = SERVICES.map((s) => ({
+  slug: s.slug,
+  title: s.title,
+  price: s.price,
+  priceFrom: s.priceFrom,
+  duration: s.duration,
+  category: s.category,
+}));
+
+// «7 процедур», «4 процедуры»
+function plural(n: number, one: string, few: string, many: string) {
+  const m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return one;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+  return many;
+}
+
+// «Инъекционная косметология» → «Инъекционная» + курсивом «косметология»
+function splitTitle(t: string) {
+  const i = t.lastIndexOf(' ');
+  return i < 0 ? { head: '', tail: t } : { head: t.slice(0, i), tail: t.slice(i + 1) };
+}
+
+const steps = [
+  { n: 1, label: 'Услуги' },
+  { n: 2, label: 'Дата и время' },
+  { n: 3, label: 'Контакты' },
+];
+---
+
+<!--
+  Онлайн-запись в стилистике сайта: прайс как на странице направления (номер · название · отточие · цена),
+  календарь и время на тёплой панели, поля с подчёркиванием, сводка визита — бронзовая панель как в футере.
+  До 1024px сводка становится нижней закреплённой панелью (стили — раздел BOOKING в global.css).
+-->
+<Base title="Онлайн-запись · AUREA" variant="light">
+  <section class="shell pt-8 pb-16 lg:pt-14 lg:pb-28">
+    <!-- Вступление -->
+    <div class="lg:grid lg:grid-cols-12 lg:gap-10 lg:items-end mb-10 lg:mb-16">
+      <div class="lg:col-span-7">
+        <div class="flex items-center gap-3 mb-5" data-reveal="fade">
+          <span class="h-px w-10 bg-bronze"></span>
+          <span class="eyebrow">Онлайн-запись</span>
+        </div>
+        <h1 class="font-display text-ink text-[48px] md:text-[68px] lg:text-[length:clamp(64px,6.6vw,104px)]" data-split style="line-height: 0.95;">
+          Запись<br />в&nbsp;<em class="text-bronze">студию</em>
+        </h1>
+      </div>
+      <div class="mt-6 lg:mt-0 lg:col-span-5 lg:pb-3" data-reveal style="--reveal-delay:200ms">
+        <p class="text-ink/70 text-[15px] lg:text-[16px] leading-[1.65] max-w-[440px]">
+          Выберите процедуры, удобные дату и&nbsp;время&nbsp;— администратор перезвонит, чтобы подтвердить визит.
+          Если удобнее&nbsp;— позвоните:
+          <a href={SITE.phoneHref} class="whitespace-nowrap text-ink underline decoration-bronze/50 underline-offset-4 hover:decoration-bronze">{SITE.phone}</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Шаги -->
+    <ol class="bk-steps grid grid-cols-3 gap-3 md:gap-6 mb-10 lg:mb-14" data-stepper>
+      {steps.map((s) => (
+        <li>
+          <button type="button" data-goto={s.n} class={`bk-step${s.n === 1 ? ' is-active' : ''}`}>
+            <span class="bk-step__bar" aria-hidden="true"></span>
+            <span class="bk-step__num">{String(s.n).padStart(2, '0')}</span>
+            <span class="bk-step__label">{s.label}</span>
+          </button>
+        </li>
+      ))}
+    </ol>
+
+    <div class="lg:grid lg:grid-cols-12 lg:gap-10 xl:gap-16">
+      <div class="lg:col-span-8 min-w-0">
+
+        <!-- ШАГ 1: услуги -->
+        <section data-step="1" class="step-pane">
+          <h2 class="font-display text-ink text-[34px] md:text-[44px] leading-[1.02]">Выберите <em class="text-bronze">услуги</em></h2>
+          <p class="mt-4 text-ink/70 text-[15px] leading-[1.6] max-w-[540px]">
+            Можно несколько&nbsp;— например, уход за&nbsp;лицом и&nbsp;SPA-ритуал: всё проведём за&nbsp;один визит.
+          </p>
+
+          <!-- быстрые переходы к направлениям -->
+          <nav class="bk-cats mt-7" aria-label="Направления">
+            {SERVICES_BY_CATEGORY.map((cat) => (
+              <a href={`#bk-${cat.id}`} class="bk-chip" data-cat-link>{cat.shortTitle}</a>
+            ))}
+          </nav>
+
+          <div class="mt-10 lg:mt-12 space-y-14 lg:space-y-16">
+            {SERVICES_BY_CATEGORY.map((cat) => {
+              const t = splitTitle(cat.title);
+              return (
+                <div class="bk-group" id={`bk-${cat.id}`}>
+                  <div class="flex items-end justify-between gap-6 pb-5">
+                    <h3 class="font-display text-ink text-[26px] md:text-[32px] leading-[1.05]">
+                      {t.head} <em class="text-bronze">{t.tail}</em>
+                    </h3>
+                    <span class="eyebrow shrink-0 pb-1">{cat.services.length} {plural(cat.services.length, 'процедура', 'процедуры', 'процедур')}</span>
+                  </div>
+                  <ol class="border-t border-ink/15">
+                    {cat.services.map((s, i) => (
+                      <li class="border-b border-ink/15">
+                        <label class="bk-row" data-service-row={s.slug}>
+                          <input type="checkbox" class="bk-check" data-slug={s.slug} />
+                          <span class="menu-row__top">
+                            <span class="menu-row__num" aria-hidden="true">
+                              <span class="bk-row__digits">{String(i + 1).padStart(2, '0')}</span>
+                              <span class="bk-row__tick">
+                                <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 10.5l3 3 6-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              </span>
+                            </span>
+                            <span class="menu-row__name">{s.title}</span>
+                            <span class="menu-row__dots" aria-hidden="true"></span>
+                            <span class="menu-row__price">
+                              {s.priceFrom && <span class="menu-row__from">от</span>}
+                              {formatAmount(s.price)}<span class="menu-row__cur">₽</span>
+                            </span>
+                          </span>
+                          <span class="menu-row__bottom">
+                            <span class="menu-row__desc">{s.short}</span>
+                            <span class="menu-row__time">{formatDuration(s.duration)}</span>
+                          </span>
+                        </label>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              );
+            })}
+          </div>
+
+          <div class="mt-12 flex items-center justify-between gap-6">
+            <a href="/" class="bk-back">← На&nbsp;главную</a>
+            <span class="bk-aside-hint">Далее&nbsp;— в&nbsp;сводке справа&nbsp;→</span>
+          </div>
+        </section>
+
+        <!-- ШАГ 2: дата и время -->
+        <section data-step="2" class="step-pane hidden">
+          <h2 class="font-display text-ink text-[34px] md:text-[44px] leading-[1.02]">Дата и&nbsp;<em class="text-bronze">время</em></h2>
+          <p class="mt-4 text-ink/70 text-[15px] leading-[1.6] max-w-[540px]">
+            Длительность визита&nbsp;— <span data-total-duration class="text-ink font-semibold">—</span>.
+            Занятое время зачёркнуто.
+          </p>
+
+          <div class="bk-date mt-8 lg:mt-10">
+            <!-- Календарь -->
+            <div class="bk-cal">
+              <div class="flex items-center justify-between mb-6">
+                <button type="button" data-month-prev class="bk-nav" aria-label="Предыдущий месяц">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M12 5 7 10l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div data-month-title class="font-display text-ink text-[24px] md:text-[26px] leading-none" aria-live="polite">—</div>
+                <button type="button" data-month-next class="bk-nav" aria-label="Следующий месяц">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="bk-week" aria-hidden="true">
+                <span>пн</span><span>вт</span><span>ср</span><span>чт</span><span>пт</span><span>сб</span><span>вс</span>
+              </div>
+              <div data-calendar class="bk-days"></div>
+
+              <div class="bk-legend">
+                <span><i class="bk-legend__dot is-selected"></i>Выбрано</span>
+                <span><i class="bk-legend__dot is-today"></i>Сегодня</span>
+                <span><i class="bk-legend__dot is-off"></i>Нет записи</span>
+              </div>
+            </div>
+
+            <!-- Время -->
+            <div class="bk-time">
+              <div class="eyebrow mb-3">Время</div>
+              <div data-slot-day class="font-display text-ink text-[24px] md:text-[26px] leading-[1.15] scroll-mt-20">Выберите <em class="text-bronze">день</em></div>
+              <div data-slots class="mt-6"></div>
+            </div>
+          </div>
+
+          <div class="mt-10 flex items-center justify-between gap-6">
+            <button type="button" data-prev class="bk-back">← Назад</button>
+            <span class="bk-aside-hint">Далее&nbsp;— в&nbsp;сводке справа&nbsp;→</span>
+          </div>
+        </section>
+
+        <!-- ШАГ 3: контакты -->
+        <section data-step="3" class="step-pane hidden">
+          <h2 class="font-display text-ink text-[34px] md:text-[44px] leading-[1.02]">Ваши <em class="text-bronze">контакты</em></h2>
+          <p class="mt-4 text-ink/70 text-[15px] leading-[1.6] max-w-[540px]">
+            Администратор свяжется, чтобы подтвердить запись и&nbsp;напомнить о&nbsp;визите за&nbsp;день.
+          </p>
+
+          <form id="booking-form" class="mt-10 grid grid-cols-1 gap-y-9 md:grid-cols-2 md:gap-x-10" novalidate>
+            <label class="bk-field">
+              <span class="bk-field__label">Имя</span>
+              <input name="name" required autocomplete="name" placeholder="Как к&nbsp;вам обращаться" class="bk-input" />
+            </label>
+            <label class="bk-field">
+              <span class="bk-field__label">Телефон</span>
+              <input name="phone" required type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" class="bk-input" />
+            </label>
+            <label class="bk-field">
+              <span class="bk-field__label">E-mail <span class="bk-field__opt">необязательно</span></span>
+              <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" class="bk-input" />
+            </label>
+            <label class="bk-field">
+              <span class="bk-field__label">Комментарий <span class="bk-field__opt">необязательно</span></span>
+              <input name="comment" placeholder="Пожелания или вопросы" class="bk-input" />
+            </label>
+
+            <label class="bk-consent md:col-span-2">
+              <input type="checkbox" name="consent" required class="bk-box" />
+              <span>
+                Нажимая «Подтвердить», вы&nbsp;соглашаетесь с&nbsp;<a href="/privacy" class="bk-link">политикой конфиденциальности</a>
+                и&nbsp;<a href="/terms" class="bk-link">обработкой персональных данных</a>.
+              </span>
+            </label>
+          </form>
+
+          <div class="mt-12 flex items-center justify-between gap-6">
+            <button type="button" data-prev class="bk-back">← Назад</button>
+            <span class="bk-aside-hint">Подтверждение&nbsp;— в&nbsp;сводке справа&nbsp;→</span>
+          </div>
+        </section>
+
+        <!-- Экран успеха -->
+        <section data-step="done" class="step-pane hidden">
+          <div class="bk-done">
+            <span class="bk-done__mark" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="eyebrow mt-7">Заявка отправлена</div>
+            <h2 class="mt-3 font-display text-ink text-[40px] md:text-[56px] leading-[1]">Заявка <em class="text-bronze">принята</em></h2>
+            <p class="mt-5 mx-auto max-w-[460px] text-ink/70 text-[15px] md:text-[16px] leading-[1.65]">
+              Спасибо! Администратор AUREA свяжется с&nbsp;вами в&nbsp;течение 15&nbsp;минут,
+              чтобы подтвердить запись и&nbsp;напомнить о&nbsp;визите за&nbsp;день.
+            </p>
+
+            <dl class="bk-done__summary" data-done-summary></dl>
+
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="/" class="ritual-btn">
+                <span>На главную</span>
+                <span class="ritual-btn__icon" aria-hidden="true">
+                  <svg class="ritual-btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <svg class="ritual-btn__arrow ritual-btn__arrow--in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+              </a>
+              <a href={SITE.phoneHref} class="bk-back !text-[13px]">или позвоните: {SITE.phone}</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Сводка визита. До 1024px — нижняя закреплённая панель: сумма + кнопка, по тапу раскрывается -->
+      <aside class="lg:col-span-4">
+        <div class="order-panel bk-order" data-order>
+          <button type="button" class="order-toggle lg:hidden" data-order-toggle aria-expanded="false" aria-controls="order-services">
+            <span class="order-toggle__grip" aria-hidden="true"></span>
+            <span class="order-toggle__title">Ваш визит</span>
+            <span class="order-toggle__meta" data-order-mini>услуги не выбраны</span>
+            <svg class="order-toggle__chev" width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 12.5 10 7.5l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+          <div class="bk-order__head max-lg:hidden">
+            <span class="bk-order__label">Ваш визит</span>
+            <p class="mt-2 font-display text-[30px] leading-[1.05]">Сводка <em>записи</em></p>
+          </div>
+
+          <div class="order-detail bk-order__block" id="order-services">
+            <div class="bk-order__label mb-1">Процедуры</div>
+            <div data-order-services class="bk-order__list">
+              <p class="bk-order__empty">Пока ничего не выбрано</p>
+            </div>
+          </div>
+
+          <div class="order-detail bk-order__block bk-order__pair">
+            <span class="bk-order__label">Длительность</span>
+            <span data-order-duration class="bk-order__value">—</span>
+          </div>
+
+          <div class="order-detail bk-order__block bk-order__pair">
+            <span class="bk-order__label">Когда</span>
+            <span data-order-when class="bk-order__value">—</span>
+          </div>
+
+          <div class="order-total bk-order__total">
+            <span class="bk-order__label">Итого</span>
+            <span data-order-total class="bk-order__sum">—</span>
+          </div>
+          <p class="order-detail bk-order__note">
+            Указан ориентир «от». Точная стоимость&nbsp;— на&nbsp;консультации.
+          </p>
+
+          <!-- Главная кнопка действия — всегда здесь, у суммы -->
+          <button type="button" data-action class="bk-action" disabled aria-disabled="true">
+            <span data-action-label>Далее</span>
+            <span class="bk-action__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </button>
+          <p data-action-hint class="bk-order__hint">Выберите процедуру, чтобы продолжить</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- затемнение под раскрытой панелью (телефон) -->
+  <div class="order-backdrop lg:hidden" data-order-backdrop hidden></div>
+
+  <!-- Toast -->
+  <div id="toast" class="booking-toast fixed bottom-6 right-6 z-50 hidden" role="status">
+    <div class="bg-ink text-cream px-5 py-4 shadow-soft text-[14px]"></div>
+  </div>
+
+  <script define:vars={{ servicesForClient }}>
+    // ================== STATE ==================
+    const state = {
+      step: 1,
+      selected: new Set(),
+      date: null,
+      time: null,
+      month: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+    };
+
+    const SERVICES = servicesForClient;
+    const byId = (slug) => SERVICES.find((s) => s.slug === slug);
+
+    const TIME_SLOTS = ['10:00','10:30','11:00','11:30','12:00','12:30',
+      '13:00','13:30','14:00','14:30','15:00','15:30',
+      '16:00','16:30','17:00','17:30','18:00','18:30',
+      '19:00','19:30','20:00'];
+
+    const SLOT_GROUPS = [
+      { label: 'Утро',  from: 0,  to: 12 },
+      { label: 'День',  from: 12, to: 17 },
+      { label: 'Вечер', from: 17, to: 24 },
+    ];
+
+    const mqMobile = window.matchMedia('(max-width: 1023px)');
+
+    // ================== HELPERS ==================
+    const fmtAmount = (p) => new Intl.NumberFormat('ru-RU').format(p);
+    // цена как в прайсе: «от» курсивом, ₽ мелко
+    function priceHtml(amount, from, cls = 'bk-price') {
+      return `<span class="${cls}">${from ? `<span class="${cls}__from">от</span>` : ''}${fmtAmount(amount)}<span class="${cls}__cur">₽</span></span>`;
+    }
+    function fmtDuration(min) {
+      if (min < 60) return `${min} мин`;
+      const h = Math.floor(min / 60);
+      const m = min % 60;
+      return m === 0 ? `${h} ч` : `${h} ч ${m} мин`;
+    }
+    function plural(n, one, few, many) {
+      const m10 = n % 10, m100 = n % 100;
+      if (m10 === 1 && m100 !== 11) return one;
+      if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+      return many;
+    }
+    function isoDate(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+    function fromIso(iso) {
+      return new Date(iso + 'T00:00:00');
+    }
+    function hash(s) {
+      let h = 0;
+      for (let i = 0; i < s.length; i++) {
+        h = (h << 5) - h + s.charCodeAt(i);
+        h |= 0;
+      }
+      return Math.abs(h);
+    }
+    // Детерминированный «псевдо-занятый» график: для одного дня всегда одни и те же занятые слоты
+    function getBusy(iso) {
+      const d = fromIso(iso);
+      const day = d.getDay();
+      const isWeekend = day === 0 || day === 6;
+      const base = hash(iso);
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const daysAhead = Math.max(0, Math.round((d.getTime() - today.getTime()) / 86400000));
+      let density;
+      if (daysAhead === 0) density = 0.9;
+      else if (daysAhead === 1) density = 0.75;
+      else if (daysAhead <= 3) density = 0.55;
+      else if (daysAhead <= 7) density = 0.4;
+      else if (daysAhead <= 14) density = 0.3;
+      else density = 0.2;
+      if (isWeekend) density = Math.min(0.95, density + 0.15);
+
+      const busy = new Set();
+      TIME_SLOTS.forEach((slot, idx) => {
+        const rnd = ((base + idx * 1327) % 1000) / 1000;
+        const [hh] = slot.split(':').map(Number);
+        let local = density;
+        if (!isWeekend && hh < 12) local -= 0.2;
+        if (!isWeekend && hh >= 18 && hh < 20) local += 0.1;
+        if (rnd < local) busy.add(slot);
+      });
+      return busy;
+    }
+    function isDayClosed(iso) {
+      return hash(iso) % 90 === 0;
+    }
+    function totalPrice() {
+      let sum = 0;
+      state.selected.forEach((slug) => { const s = byId(slug); if (s) sum += s.price; });
+      return sum;
+    }
+    function totalDuration() {
+      let sum = 0;
+      state.selected.forEach((slug) => { const s = byId(slug); if (s) sum += s.duration; });
+      return sum;
+    }
+    function anyFrom() {
+      return [...state.selected].some((slug) => byId(slug)?.priceFrom);
+    }
+    const MONTH_NAMES = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+    const WEEKDAY_NAMES = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+    const WEEKDAY_SHORT = ['вс','пн','вт','ср','чт','пт','сб'];
+    const MONTH_RU_GEN = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+
+    const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+    function fmtDay(iso) {
+      const d = fromIso(iso);
+      return `${cap(WEEKDAY_NAMES[d.getDay()])}, ${d.getDate()} ${MONTH_RU_GEN[d.getMonth()]}`;
+    }
+    function fmtDayShort(iso) {
+      const d = fromIso(iso);
+      return `${WEEKDAY_SHORT[d.getDay()]}, ${d.getDate()} ${MONTH_RU_GEN[d.getMonth()]}`;
+    }
+
+    // ================== RENDER: сводка ==================
+    function renderOrder() {
+      const list = document.querySelector('[data-order-services]');
+      if (state.selected.size === 0) {
+        list.innerHTML = '<p class="bk-order__empty">Пока ничего не выбрано</p>';
+      } else {
+        list.innerHTML = [...state.selected].map((slug) => {
+          const s = byId(slug);
+          const remove = state.step === 1
+            ? `<button type="button" class="bk-order__remove" data-remove="${s.slug}" aria-label="Убрать: ${s.title}">
+                 <svg viewBox="0 0 20 20" fill="none"><path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+               </button>`
+            : '';
+          return `
+            <div class="bk-order__item">
+              <span class="bk-order__name">${s.title}</span>
+              ${priceHtml(s.price, s.priceFrom)}
+              ${remove}
+            </div>`;
+        }).join('');
+      }
+
+      const dur = totalDuration();
+      document.querySelector('[data-order-duration]').textContent = dur ? fmtDuration(dur) : '—';
+      document.querySelector('[data-total-duration]').textContent = dur ? fmtDuration(dur) : '—';
+
+      let when = '—';
+      if (state.date && state.time) when = `${fmtDayShort(state.date)} · ${state.time}`;
+      else if (state.date) when = `${fmtDayShort(state.date)} · время?`;
+      document.querySelector('[data-order-when]').textContent = when;
+
+      const total = totalPrice();
+      document.querySelector('[data-order-total]').innerHTML = total ? priceHtml(total, anyFrom(), 'bk-sum') : '—';
+
+      // краткая сводка в свёрнутой панели (телефон)
+      const n = state.selected.size;
+      document.querySelector('[data-order-mini]').textContent = n
+        ? `${n} ${plural(n, 'услуга', 'услуги', 'услуг')} · ${fmtDuration(dur)}${state.date && state.time ? ` · ${state.time}` : ''}`
+        : 'услуги не выбраны';
+
+      updateAction();
+    }
+
+    // ================== КНОПКА ДЕЙСТВИЯ ==================
+    const ACTION_HINTS = {
+      1: 'Выберите процедуру, чтобы продолжить',
+      2: 'Выберите дату и время',
+      3: 'Заполните имя, телефон и согласие',
+    };
+
+    function contactValid() {
+      const form = document.getElementById('booking-form');
+      if (!form) return false;
+      return !!(form.name.value.trim() && form.phone.value.trim() && form.consent.checked);
+    }
+    function stepValid(step) {
+      if (step === 1) return state.selected.size > 0;
+      if (step === 2) return !!(state.date && state.time);
+      if (step === 3) return contactValid();
+      return false;
+    }
+
+    function updateAction() {
+      const btn = document.querySelector('[data-action]');
+      const label = document.querySelector('[data-action-label]');
+      const hint = document.querySelector('[data-action-hint]');
+      if (!btn) return;
+
+      if (state.step === 'done') {
+        btn.style.display = 'none';
+        hint.style.display = 'none';
+        return;
+      }
+      btn.style.display = '';
+      hint.style.display = '';
+
+      label.textContent = state.step === 3 ? (mqMobile.matches ? 'Подтвердить' : 'Подтвердить запись') : 'Далее';
+
+      const valid = stepValid(state.step);
+      const wasDisabled = btn.disabled;
+      btn.disabled = !valid;
+      btn.setAttribute('aria-disabled', String(!valid));
+
+      // разовая анимация, когда шаг стал валидным
+      if (valid && wasDisabled) {
+        btn.classList.remove('btn-activated');
+        void btn.offsetWidth;
+        btn.classList.add('btn-activated');
+      }
+
+      hint.textContent = valid ? '' : (ACTION_HINTS[state.step] || '');
+    }
+
+    function advance() {
+      if (!stepValid(state.step)) return;
+      if (state.step < 3) goStep(state.step + 1);
+      else submitBooking();
+    }
+
+    // ================== КАЛЕНДАРЬ ==================
+    function renderCalendar() {
+      const m = state.month;
+      document.querySelector('[data-month-title]').innerHTML =
+        `${cap(MONTH_NAMES[m.getMonth()])} <em class="text-bronze">${m.getFullYear()}</em>`;
+
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      // в прошлые месяцы не листаем
+      const prev = document.querySelector('[data-month-prev]');
+      prev.disabled = m.getFullYear() === today.getFullYear() && m.getMonth() <= today.getMonth();
+
+      const first = new Date(m.getFullYear(), m.getMonth(), 1);
+      let firstWeekday = first.getDay();
+      firstWeekday = firstWeekday === 0 ? 6 : firstWeekday - 1; // 0 = пн
+      const daysInMonth = new Date(m.getFullYear(), m.getMonth() + 1, 0).getDate();
+      const prevMonthDays = new Date(m.getFullYear(), m.getMonth(), 0).getDate();
+
+      const cells = [];
+      for (let i = firstWeekday - 1; i >= 0; i--) {
+        cells.push({ day: prevMonthDays - i, outside: true, d: new Date(m.getFullYear(), m.getMonth() - 1, prevMonthDays - i) });
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        cells.push({ day: d, outside: false, d: new Date(m.getFullYear(), m.getMonth(), d) });
+      }
+      let next = 1;
+      while (cells.length % 7 !== 0) {
+        cells.push({ day: next, outside: true, d: new Date(m.getFullYear(), m.getMonth() + 1, next) });
+        next++;
+      }
+
+      const calEl = document.querySelector('[data-calendar]');
+      calEl.innerHTML = cells.map((c) => {
+        const iso = isoDate(c.d);
+        const past = c.d < today;
+        const closed = !c.outside && !past && isDayClosed(iso);
+        const cls = ['bk-day'];
+        if (c.outside) cls.push('is-outside');
+        if (past) cls.push('is-past');
+        if (closed) cls.push('is-closed');
+        if (iso === isoDate(today)) cls.push('is-today');
+        if (state.date === iso) cls.push('is-selected');
+        const disabled = past || closed || c.outside;
+        const label = `${c.d.getDate()} ${MONTH_RU_GEN[c.d.getMonth()]}${closed ? ', нет записи' : ''}`;
+        return `<button type="button" data-day="${iso}" class="${cls.join(' ')}" ${disabled ? 'disabled' : ''}
+                  aria-label="${label}" ${state.date === iso ? 'aria-pressed="true"' : ''}><span>${c.day}</span></button>`;
+      }).join('');
+
+      calEl.querySelectorAll('button[data-day]:not([disabled])').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.date = btn.getAttribute('data-day');
+          state.time = null;
+          renderCalendar();
+          renderSlots();
+          renderOrder();
+          // когда время под календарём (телефон, ноутбук) — подводим к нему, если оно ниже середины экрана
+          if (window.matchMedia('(max-width: 767px), (min-width: 1024px) and (max-width: 1279px)').matches) {
+            const dayEl = document.querySelector('[data-slot-day]');
+            if (dayEl.getBoundingClientRect().top > window.innerHeight * 0.55) {
+              dayEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    }
+
+    // ================== ВРЕМЯ ==================
+    function renderSlots() {
+      const dayEl = document.querySelector('[data-slot-day]');
+      const slotsEl = document.querySelector('[data-slots]');
+      if (!state.date) {
+        dayEl.innerHTML = 'Выберите <em class="text-bronze">день</em>';
+        slotsEl.innerHTML = '<p class="bk-slots-empty">Отметьте день в&nbsp;календаре&nbsp;— здесь появится свободное время.</p>';
+        return;
+      }
+      const d = fromIso(state.date);
+      dayEl.innerHTML = `${cap(WEEKDAY_NAMES[d.getDay()])}, <em class="text-bronze">${d.getDate()} ${MONTH_RU_GEN[d.getMonth()]}</em>`;
+
+      const busy = getBusy(state.date);
+      const free = TIME_SLOTS.filter((t) => !busy.has(t)).length;
+      slotsEl.innerHTML = SLOT_GROUPS.map((g) => {
+        const slots = TIME_SLOTS.filter((t) => {
+          const hh = Number(t.split(':')[0]);
+          return hh >= g.from && hh < g.to;
+        });
+        if (!slots.length) return '';
+        return `
+          <div class="bk-slot-group">
+            <div class="bk-slot-group__label">${g.label}</div>
+            <div class="bk-slot-grid">
+              ${slots.map((t) => {
+                const isBusy = busy.has(t);
+                const cls = ['bk-slot'];
+                if (isBusy) cls.push('is-busy');
+                if (state.time === t) cls.push('is-selected');
+                return `<button type="button" data-time="${t}" class="${cls.join(' ')}" ${isBusy ? 'disabled aria-label="' + t + ', занято"' : ''} ${state.time === t ? 'aria-pressed="true"' : ''}>${t}</button>`;
+              }).join('')}
+            </div>
+          </div>`;
+      }).join('') + (free ? '' : '<p class="bk-slots-empty mt-2">На этот день всё занято&nbsp;— выберите другой.</p>');
+
+      slotsEl.querySelectorAll('button[data-time]:not([disabled])').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.time = btn.getAttribute('data-time');
+          renderSlots();
+          renderOrder();
+        });
+      });
+    }
+
+    // ================== ШАГИ ==================
+    function renderStep() {
+      document.querySelectorAll('.step-pane').forEach((el) => el.classList.add('hidden'));
+      const current = state.step === 'done' ? 'done' : state.step;
+      const pane = document.querySelector(`[data-step="${current}"]`);
+      if (pane) {
+        pane.classList.remove('hidden');
+        pane.classList.remove('bk-pane-in');
+        void pane.offsetWidth;
+        pane.classList.add('bk-pane-in');
+      }
+
+      document.querySelectorAll('.bk-step').forEach((tab) => {
+        const idx = Number(tab.getAttribute('data-goto'));
+        const done = state.step === 'done' || idx < state.step;
+        tab.classList.toggle('is-active', idx === state.step);
+        tab.classList.toggle('is-done', done);
+        if (idx === state.step) tab.setAttribute('aria-current', 'step');
+        else tab.removeAttribute('aria-current');
+      });
+
+      panel?.classList.toggle('is-done', state.step === 'done');
+      setExpanded(false);
+      renderOrder();
+    }
+
+    // к началу шага (если он выше экрана): на телефоне — с запасом под компактную шапку
+    function scrollToStep() {
+      const offset = mqMobile.matches ? 76 : 32;
+      const top = document.querySelector('[data-stepper]').getBoundingClientRect().top + window.scrollY - offset;
+      if (top < window.scrollY) window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    function goStep(n) {
+      state.step = n;
+      renderStep();
+      if (n === 2) {
+        renderCalendar();
+        renderSlots();
+      }
+      scrollToStep();
+    }
+
+    // ================== ПАНЕЛЬ НА ТЕЛЕФОНЕ ==================
+    const panel = document.querySelector('[data-order]');
+    const backdrop = document.querySelector('[data-order-backdrop]');
+    const toggle = document.querySelector('[data-order-toggle]');
+
+    function setExpanded(open) {
+      if (!panel) return;
+      panel.classList.toggle('is-expanded', open);
+      toggle?.setAttribute('aria-expanded', String(open));
+      if (backdrop) backdrop.hidden = !open;
+      if (!open) syncPanelSpace();
+    }
+
+    // место под панель внизу страницы, чтобы она не закрывала футер и тост
+    function syncPanelSpace() {
+      if (!panel) return;
+      const active = mqMobile.matches && state.step !== 'done';
+      const h = active ? panel.offsetHeight : 0;
+      document.body.style.paddingBottom = active ? `${h}px` : '';
+      document.documentElement.style.setProperty('--order-h', `${h}px`);
+    }
+
+    toggle?.addEventListener('click', () => setExpanded(!panel.classList.contains('is-expanded')));
+    backdrop?.addEventListener('click', () => setExpanded(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel?.classList.contains('is-expanded')) setExpanded(false);
+    });
+    mqMobile.addEventListener('change', () => { setExpanded(false); updateAction(); });
+    if (panel && 'ResizeObserver' in window) {
+      new ResizeObserver(() => { if (!panel.classList.contains('is-expanded')) syncPanelSpace(); }).observe(panel);
+    }
+
+    // ================== INIT ==================
+    function setSelected(slug, on) {
+      const cb = document.querySelector(`.bk-check[data-slug="${slug}"]`);
+      const row = cb?.closest('.bk-row');
+      if (on) state.selected.add(slug); else state.selected.delete(slug);
+      if (cb) cb.checked = on;
+      row?.classList.toggle('is-selected', on);
+    }
+
+    function initServiceRows() {
+      document.querySelectorAll('.bk-check').forEach((cb) => {
+        cb.addEventListener('change', () => {
+          setSelected(cb.getAttribute('data-slug'), cb.checked);
+          renderOrder();
+        });
+      });
+      // убрать процедуру прямо из сводки
+      document.querySelector('[data-order-services]').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-remove]');
+        if (!btn) return;
+        setSelected(btn.getAttribute('data-remove'), false);
+        renderOrder();
+      });
+      // плавный переход к направлению
+      document.querySelectorAll('[data-cat-link]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const target = document.querySelector(a.getAttribute('href'));
+          if (!target) return;
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - (mqMobile.matches ? 76 : 32);
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+      });
+    }
+
+    function initNav() {
+      document.querySelector('[data-action]')?.addEventListener('click', advance);
+      document.querySelectorAll('[data-prev]').forEach((b) => {
+        b.addEventListener('click', () => {
+          if (state.step > 1) goStep(state.step - 1);
+        });
+      });
+      document.querySelectorAll('.bk-step').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          if (state.step === 'done') return;
+          const n = Number(tab.getAttribute('data-goto'));
+          if (n === 1) return goStep(1);
+          if (n === 2 && state.selected.size > 0) return goStep(2);
+          if (n === 3 && state.selected.size > 0 && state.date && state.time) return goStep(3);
+        });
+      });
+
+      document.querySelector('[data-month-prev]').addEventListener('click', () => {
+        state.month = new Date(state.month.getFullYear(), state.month.getMonth() - 1, 1);
+        renderCalendar();
+      });
+      document.querySelector('[data-month-next]').addEventListener('click', () => {
+        state.month = new Date(state.month.getFullYear(), state.month.getMonth() + 1, 1);
+        renderCalendar();
+      });
+    }
+
+    function renderDoneSummary() {
+      const el = document.querySelector('[data-done-summary]');
+      const rows = [...state.selected].map((slug) => {
+        const s = byId(slug);
+        return `<div class="bk-done__row"><dt>${s.title}</dt><dd>${priceHtml(s.price, s.priceFrom)}</dd></div>`;
+      });
+      rows.push(`<div class="bk-done__row"><dt>Когда</dt><dd class="bk-done__when">${fmtDay(state.date)} · ${state.time}</dd></div>`);
+      rows.push(`<div class="bk-done__row is-total"><dt>Итого</dt><dd>${priceHtml(totalPrice(), anyFrom(), 'bk-sum')}</dd></div>`);
+      el.innerHTML = rows.join('');
+    }
+
+    function submitBooking() {
+      const form = document.getElementById('booking-form');
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (!data.name || !data.phone || !data.consent) {
+        showToast('Заполните имя, телефон и&nbsp;подтвердите согласие');
+        return;
+      }
+      const payload = {
+        services: [...state.selected].map((slug) => {
+          const s = byId(slug);
+          return { slug: s.slug, title: s.title, price: s.price, duration: s.duration };
+        }),
+        when: `${state.date} ${state.time}`,
+        contact: data,
+        total: totalPrice(),
+        duration: totalDuration(),
+        createdAt: new Date().toISOString(),
+      };
+      // eslint-disable-next-line no-console
+      console.log('[AUREA · заявка на запись]', payload);
+      renderDoneSummary();
+      state.step = 'done';
+      renderStep();
+      scrollToStep();
+    }
+
+    function initContactValidation() {
+      const form = document.getElementById('booking-form');
+      if (!form) return;
+      const refresh = () => { if (state.step === 3) updateAction(); };
+      form.addEventListener('input', refresh);
+      form.addEventListener('change', refresh);
+    }
+
+    function showToast(html) {
+      const t = document.getElementById('toast');
+      t.querySelector('div').innerHTML = html;
+      t.classList.remove('hidden');
+      setTimeout(() => t.classList.add('hidden'), 3500);
+    }
+
+    // Предвыбор услуги через ?service=slug
+    function preselectFromQuery() {
+      const q = new URLSearchParams(window.location.search).get('service');
+      if (!q || !byId(q)) return;
+      setSelected(q, true);
+    }
+
+    initServiceRows();
+    initNav();
+    initContactValidation();
+    preselectFromQuery();
+    renderOrder();
+    syncPanelSpace();
+  </script>
+</Base>

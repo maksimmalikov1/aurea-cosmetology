@@ -1,0 +1,163 @@
+---
+import { SITE } from '../data/site';
+import NavItem from './NavItem.astro';
+import PillCta from './PillCta.astro';
+export interface Props { theme?: 'onDark' | 'onLight'; }
+const { theme = 'onDark' } = Astro.props;
+const onDark = theme === 'onDark';
+
+const mobileNav = SITE.nav;
+---
+
+<!-- Одна шапка для всех страниц: как на хиро. onDark — поверх фото (светлая),
+     onLight — на кремовом фоне внутренних страниц (тёмная), в потоке документа.
+     До 1024px вместо навигации — бургер и полноэкранное меню (#mnav). -->
+<header class={`site-header ${onDark ? 'absolute inset-x-0 top-0 z-30' : 'relative z-30'}`}>
+  <div class="shell-wide flex items-center justify-between pt-5 lg:pt-8">
+    <a href="/" class={`font-sans text-[18px] lg:text-[22px] font-extrabold uppercase tracking-[0.3em] ${onDark ? 'text-cream' : 'text-ink'}`}>AUREA</a>
+    <nav class={`hidden lg:flex items-center gap-8 text-[14px] tracking-wide ${onDark ? 'text-cream/90' : 'text-ink/80'}`}>
+      {SITE.nav.map((n) => <NavItem href={n.href} label={n.label} class={onDark ? 'hover:text-cream' : 'hover:text-ink'} />)}
+    </nav>
+    <button type="button" class={`burger lg:hidden -mr-2.5 ${onDark ? 'text-cream' : 'text-ink'}`}
+            data-mnav-open aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Компактная панель на телефоне: выезжает сверху, когда страницу листают обратно вверх -->
+<div class="mbar lg:hidden" id="mbar" aria-hidden="true">
+  <div class="shell-wide flex h-full items-center justify-between">
+    <a href="/" class="font-sans text-[16px] font-extrabold uppercase tracking-[0.3em] text-ink" tabindex="-1">AUREA</a>
+    <button type="button" class="burger -mr-2.5 text-ink" data-mnav-open tabindex="-1"
+            aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span>
+    </button>
+  </div>
+</div>
+
+<!-- Полноэкранное меню (до 1024px) -->
+<div class="mnav lg:hidden" id="mnav" role="dialog" aria-modal="true" aria-label="Меню" hidden>
+  <div class="mnav__inner">
+    <div class="shell-wide flex items-center justify-between pt-5">
+      <a href="/" class="font-sans text-[18px] font-extrabold uppercase tracking-[0.3em] text-cream">AUREA</a>
+      <button type="button" class="mnav__close -mr-2.5" data-mnav-close aria-label="Закрыть меню">
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="mnav__nav shell-wide" aria-label="Основная навигация">
+      <ol>
+        {mobileNav.map((n, i) => (
+          <li style={`--i:${i}`}>
+            <a href={n.href} class="mnav__link" data-mnav-link>
+              <span class="mnav__num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="mnav__label">{n.label}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <div class="mnav__foot shell-wide" style={`--i:${mobileNav.length}`}>
+      <PillCta href="/booking" tone="cream" />
+      <div class="mt-8 grid gap-1 text-[15px] leading-[1.5] text-cream/90">
+        <a href={SITE.phoneHref} class="text-cream text-[18px]">{SITE.phone}</a>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        <span class="mt-2 text-cream/75">{SITE.address}</span>
+        <span class="text-cream/75">{SITE.hours}</span>
+      </div>
+      <div class="mt-6 flex gap-3">
+        <a href={SITE.socials.telegram} target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="Telegram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+        </a>
+        <a href={SITE.socials.vk} target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="ВКонтакте">
+          <span class="text-[12px] font-extrabold tracking-tight" aria-hidden="true">VK</span>
+        </a>
+        <a href={SITE.phoneHref} class="footer-icon" aria-label={`Позвонить: ${SITE.phone}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const menu = document.getElementById('mnav');
+  const bar = document.getElementById('mbar');
+  const openers = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-mnav-open]'));
+  let lastOpener: HTMLElement | null = null;
+  let closeTimer = 0;
+
+  const setExpanded = (v: boolean) => openers.forEach((b) => b.setAttribute('aria-expanded', String(v)));
+
+  function openMenu(from: HTMLElement) {
+    if (!menu) return;
+    lastOpener = from;
+    window.clearTimeout(closeTimer);
+    menu.hidden = false;
+    document.documentElement.classList.add('mnav-lock');
+    void menu.offsetWidth; // старт перехода
+    menu.classList.add('is-open');
+    setExpanded(true);
+    menu.querySelector<HTMLElement>('[data-mnav-close]')?.focus({ preventScroll: true });
+  }
+
+  function closeMenu(restoreFocus = true) {
+    if (!menu || !menu.classList.contains('is-open')) return;
+    menu.classList.remove('is-open');
+    document.documentElement.classList.remove('mnav-lock');
+    setExpanded(false);
+    closeTimer = window.setTimeout(() => { menu.hidden = true; }, 450);
+    if (restoreFocus) lastOpener?.focus({ preventScroll: true });
+  }
+
+  openers.forEach((b) => b.addEventListener('click', () => openMenu(b)));
+  menu?.querySelector('[data-mnav-close]')?.addEventListener('click', () => closeMenu());
+  // переход по пункту: закрываем меню, якорь на этой же странице прокрутится сам
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => closeMenu(false)));
+
+  document.addEventListener('keydown', (e) => {
+    if (!menu?.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { closeMenu(); return; }
+    if (e.key !== 'Tab') return;
+    // фокус не уходит из открытого меню
+    const items = Array.from(menu.querySelectorAll<HTMLElement>('a, button'));
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  // на десктопной ширине меню не нужно
+  const desktop = window.matchMedia('(min-width: 1024px)');
+  desktop.addEventListener('change', () => { if (desktop.matches) closeMenu(false); });
+
+  // Компактная панель: показываем при прокрутке вверх, прячем при прокрутке вниз и у самого верха
+  if (bar) {
+    const header = document.querySelector<HTMLElement>('.site-header');
+    let lastY = window.scrollY;
+    let shown = false;
+    const setShown = (v: boolean) => {
+      if (v === shown) return;
+      shown = v;
+      bar.classList.toggle('is-shown', v);
+      bar.setAttribute('aria-hidden', String(!v));
+      bar.querySelectorAll<HTMLElement>('a, button').forEach((el) => (el.tabIndex = v ? 0 : -1));
+    };
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const y = window.scrollY;
+        const threshold = (header?.offsetHeight ?? 60) + 240;
+        if (y < threshold) setShown(false);
+        else if (y < lastY - 6) setShown(true);
+        else if (y > lastY + 6) setShown(false);
+        lastY = y;
+      });
+    }, { passive: true });
+  }
+</script>

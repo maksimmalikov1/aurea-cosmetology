@@ -1,0 +1,60 @@
+---
+import Cta from './Cta.astro';
+---
+
+<section class="hero relative h-screen min-h-[560px] lg:min-h-[640px] overflow-hidden flex flex-col">
+  <!-- фото + контент (на весь экран) -->
+  <div class="relative flex-1 overflow-hidden">
+    <img src="/img/hero.webp" alt="Студия эстетической косметологии AUREA"
+         class="hero-img absolute inset-0 w-full h-full object-cover" fetchpriority="high"
+         style="transform: scale(1.08) translateY(3%); transform-origin: center;" />
+
+    <!-- тёплый тон + мягкие градиенты читаемости (верх для меню, низ для слогана) -->
+    <div class="absolute inset-0 bg-bronze/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/35 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/75 lg:from-ink/55 via-transparent to-transparent"></div>
+
+    <div class="relative z-10 h-full shell-wide flex flex-col">
+      <!-- правый блок: текст + кнопка (как в референсе); на телефоне — внизу, под слоганом -->
+      <div class="order-last pb-9 flex lg:order-none lg:pb-0 lg:justify-end lg:pt-24">
+        <div class="max-w-[320px] text-left lg:max-w-[300px] lg:text-right text-cream" data-reveal style="--reveal-delay:600ms">
+          <p class="font-sans text-[14px] lg:text-[15px] leading-[1.6]">
+            Спокойное и элегантное пространство для вашей красоты и&nbsp;заботы о&nbsp;себе
+          </p>
+          <div class="mt-6 lg:mt-7 flex lg:justify-end">
+            <Cta href="/booking" variant="dark" />
+          </div>
+        </div>
+      </div>
+
+      <!-- крупный слоган слева внизу: 2-я строка курсивом -->
+      <div class="mt-auto pb-6 lg:pb-12">
+        <h1 class="text-cream font-display font-normal leading-[0.9] text-[length:clamp(44px,14.6vw,58px)] md:text-[64px] lg:text-[length:clamp(56px,6.3vw,108px)]" data-split
+            style="--reveal-delay:350ms;">
+          Красота<br />
+          <em class="italic">в простоте</em>
+        </h1>
+        <p class="mt-4 lg:mt-6 text-cream/85 text-[14px] lg:text-[15px] max-lg:max-w-[300px] max-lg:[text-wrap:balance]" data-reveal style="--reveal-delay:800ms">
+          Мягкое сияние. Честный уход. Результат вне времени.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- нижняя лента (в пределах первого экрана, как в референсе) -->
+  <div class="relative z-10 border-t border-sand bg-cream">
+    <div class="overflow-hidden py-4 lg:py-6">
+      <div class="marquee-track text-ink font-sans text-[13px] lg:text-[16px] uppercase tracking-wider2">
+        {Array.from({ length: 2 }).map(() => (
+          <div class="flex items-center gap-8 lg:gap-12">
+            <span>Современные протоколы</span><span class="text-bronze">●</span>
+            <span>Клинический уход</span><span class="text-bronze">●</span>
+            <span>Натуральный результат</span><span class="text-bronze">●</span>
+            <span>Сертифицированные бренды</span><span class="text-bronze">●</span>
+            <span>Конфиденциальность</span><span class="text-bronze">●</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

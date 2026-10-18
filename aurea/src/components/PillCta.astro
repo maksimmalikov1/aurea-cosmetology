@@ -1,0 +1,19 @@
+---
+// Кнопка-пилюля с кружком-стрелкой (как в референсе LUMI). Стили — .ritual-btn в global.css.
+// tone: bronze → бронзовая на светлом фоне; cream → кремовая на бронзовом фоне (футер)
+export interface Props {
+  href: string;
+  label?: string;
+  tone?: 'bronze' | 'cream';
+  class?: string;
+}
+const { href, label = 'Записаться на визит', tone = 'bronze', class: cls = '' } = Astro.props;
+---
+
+<a href={href} class={`ritual-btn${tone === 'cream' ? ' ritual-btn--cream' : ''} ${cls}`}>
+  <span>{label}</span>
+  <span class="ritual-btn__icon" aria-hidden="true">
+    <svg class="ritual-btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <svg class="ritual-btn__arrow ritual-btn__arrow--in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </span>
+</a>

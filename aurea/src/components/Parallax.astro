@@ -1,0 +1,96 @@
+---
+import Cta from './Cta.astro';
+---
+
+<!--
+  Фото «прокручивается» внутри блока: блок закрепляется по центру экрана,
+  пока фото проезжает от верхнего края до нижнего, и только потом уходит вверх.
+  Без JS / при reduced-motion — обычный статичный блок с фото cover.
+-->
+<section class="scrollpan" aria-labelledby="scrollpan-title">
+  <div class="scrollpan__track">
+    <div class="scrollpan__sticky">
+      <div class="scrollpan__frame">
+        <img src="/img/parallax.webp" alt="Ухоженная кожа лица крупным планом"
+             class="scrollpan__img" width="1376" height="768" loading="lazy" decoding="async" />
+        <div class="absolute inset-0 bg-ink/35" aria-hidden="true"></div>
+
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 md:px-10">
+          <h2 id="scrollpan-title" class="font-display text-cream max-w-[960px] text-[25px] md:text-[30px] lg:text-[length:clamp(30px,1.9vw,38px)] max-lg:[text-wrap:balance]" data-split style="line-height: 1.25;">
+            Найдите то, что подходит именно вам&nbsp;— почувствуйте разницу с&nbsp;каждым прикосновением
+          </h2>
+          <div class="mt-8 lg:mt-9" data-reveal style="--reveal-delay:500ms">
+            <Cta href="/booking" variant="outline" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.scrollpan');
+  const track = root?.querySelector<HTMLElement>('.scrollpan__track');
+  const sticky = root?.querySelector<HTMLElement>('.scrollpan__sticky');
+  const frame = root?.querySelector<HTMLElement>('.scrollpan__frame');
+  const img = root?.querySelector<HTMLImageElement>('.scrollpan__img');
+
+  if (root && track && sticky && frame && img) {
+    // Во сколько раз фото шире рамки (>1 — больше хода по вертикали ценой лёгкого кропа по бокам)
+    const ZOOM = 1;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let travel = 0;
+    let stickyTop = 0;
+
+    const ratio = () =>
+      img.naturalWidth && img.naturalHeight
+        ? img.naturalHeight / img.naturalWidth
+        : Number(img.getAttribute('height')) / Number(img.getAttribute('width'));
+
+    // Вызывается прямо из scroll (браузер шлёт его раз в кадр) — без rAF,
+    // чтобы фото не отставало на кадр от закреплённого блока
+    const update = () => {
+      if (!travel) return;
+      // сколько проскроллили с момента закрепления блока → смещение фото 1:1
+      const scrolled = stickyTop - track.getBoundingClientRect().top;
+      const y = Math.min(travel, Math.max(0, scrolled));
+      img.style.transform = `translate3d(0, ${-y}px, 0)`;
+    };
+
+    const reset = () => {
+      root.classList.remove('is-pan');
+      travel = 0;
+      track.style.height = '';
+      sticky.style.top = '';
+      img.removeAttribute('style');
+    };
+
+    const layout = () => {
+      if (reduce.matches) { reset(); return; }
+      root.classList.add('is-pan');
+
+      const fw = frame.clientWidth;
+      const fh = frame.clientHeight;
+      let w = fw * ZOOM;
+      let h = w * ratio();
+      if (h < fh) { h = fh; w = h / ratio(); } // всегда закрываем рамку целиком
+
+      travel = Math.max(0, Math.round(h - fh));
+      img.style.width = `${w}px`;
+      img.style.height = `${h}px`;
+      img.style.marginLeft = `${-w / 2}px`;
+
+      stickyTop = Math.max(0, Math.round((window.innerHeight - fh) / 2));
+      sticky.style.top = `${stickyTop}px`;
+      // высота трека = рамка + путь фото: столько блок и стоит на месте
+      track.style.height = `${fh + travel}px`;
+      update();
+    };
+
+    layout();
+    if (!img.complete) img.addEventListener('load', layout, { once: true });
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', layout, { passive: true });
+    reduce.addEventListener('change', layout);
+  }
+</script>
